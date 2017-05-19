@@ -2,8 +2,8 @@
 
 module para_top(
 //data path
-ad_data,
-ad_vld,
+sm_data,
+sm_vld,
 //fx bus
 fx_waddr,
 fx_wr,
@@ -16,7 +16,9 @@ dev_id,
 clk_sys,
 rst_n
 );
-
+//data path
+input [15:0]	sm_data;
+input					sm_vld;
 //fx_bus
 input 				fx_wr;
 input [7:0]		fx_data;
@@ -30,3 +32,20 @@ input clk_sys;
 input rst_n;
 //--------------------------------------
 //--------------------------------------
+
+//----------- register --------
+para_regs u_para_regs( 
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(fx_q),
+//clk rst
+.dev_id(dev_id),
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+
+endmodule

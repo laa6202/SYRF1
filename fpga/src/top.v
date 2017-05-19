@@ -173,6 +173,14 @@ wire [7:0] dsp5_fx_q;
 wire [7:0] dsp6_fx_q;
 wire [7:0] dsp7_fx_q;
 wire [7:0] dsp8_fx_q;
+wire [7:0]	p1_fx_q;
+wire [7:0]	p2_fx_q;
+wire [7:0]	p3_fx_q;
+wire [7:0]	p4_fx_q;
+wire [7:0]	p5_fx_q;
+wire [7:0]	p6_fx_q;
+wire [7:0]	p7_fx_q;
+wire [7:0]	p8_fx_q;
 //fx bus master
 wire 				ufx_wr;
 wire [7:0]	ufx_data;
@@ -204,6 +212,14 @@ fx_bus u_fx_bus(
 .dsp6_fx_q(dsp6_fx_q),
 .dsp7_fx_q(dsp7_fx_q),
 .dsp8_fx_q(dsp8_fx_q),
+.p1_fx_q(p1_fx_q),
+.p2_fx_q(8'h0),
+.p3_fx_q(8'h0),
+.p4_fx_q(8'h0),
+.p5_fx_q(8'h0),
+.p6_fx_q(8'h0),
+.p7_fx_q(8'h0),
+.p8_fx_q(8'h0),
 //fx bus for uart maseter
 .ufx_waddr(ufx_waddr),
 .ufx_wr(ufx_wr),
@@ -607,5 +623,22 @@ dsp_top dsp8_top(
 );
 
 
+//------------ para top --------
+para_top p1_top(
+//data path
+.sm_data(sm1_data),
+.sm_vld(sm1_vld),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(p1_fx_q),
+//clk rst
+.dev_id(6'h20),
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
 
 endmodule

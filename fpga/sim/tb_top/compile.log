@@ -23,6 +23,8 @@ C:\Tools\modeltech64_10.2c\win64\vlog.exe -reportprogress 300 -f flist
 -- Skipping module ad_s2p
 -- Skipping module dsp_top
 -- Skipping module dsp_regs
+-- Skipping module para_top
+-- Skipping module para_regs
 
 Top level modules:
 	tb

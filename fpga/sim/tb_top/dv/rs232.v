@@ -36,7 +36,7 @@ endtask
 
 initial begin
 				uart_tx <= 1'b1;
-#700		send_utx(8'h11);
+#700		send_utx(8'h20);
 #200		send_utx(8'h00);
 #200		send_utx(8'h85);
 #200		send_utx(8'haa);

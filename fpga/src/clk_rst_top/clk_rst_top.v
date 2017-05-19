@@ -8,6 +8,7 @@ mclk1,
 mclk2,
 clk_sys,
 clk_slow,
+pluse_us,
 rst_n
 );
 input hrst_n;
@@ -16,6 +17,7 @@ input mclk1;
 input mclk2;
 output clk_sys;
 output clk_slow;
+output pluse_us;
 output rst_n;
 //---------------------------------
 //---------------------------------
@@ -42,6 +44,14 @@ wire clk_sys;
 assign clk_sys = clk_100m;
 wire clk_slow;
 assign clk_slow = clk_1m;
+
+
+//----------- gen pluse 1us at cly_sys zone-------
+pluse_us_gen u_pluse_us_gen(
+.pluse_us(pluse_us),
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
 
 
 endmodule

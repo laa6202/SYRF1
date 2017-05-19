@@ -18,10 +18,17 @@ tb.v
 
 ../../src/top.v
 ../../src/clk_rst_top/clk_rst_top.v
+../../src/clk_rst_top/pluse_us_gen.v
 ../../src/ad_top/ad_top.v
 ../../src/ad_top/sclk_gen.v
 ../../src/ad_top/csn_gen.v
 ../../src/ad_top/ad_s2p.v
+../../src/commu_top/commu_top.v
+../../src/commu_top/fx_master.v
+../../src/commu_top/phy_urx.v
+../../src/commu_top/phy_utx.v
+../../src/commu_top/urx_filter.v
+../../src/control_top/control_top.v
 
 
 

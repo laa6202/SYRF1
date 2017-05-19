@@ -134,6 +134,7 @@ input					hrst_n;
 //--------- clk rst -----------
 wire clk_sys;
 wire clk_slow;
+wire pluse_us;
 wire rst_n;
 clk_rst_top u_clk_rst(
 .hrst_n(hrst_n),
@@ -142,8 +143,52 @@ clk_rst_top u_clk_rst(
 .mclk2(mclk2),
 .clk_sys(clk_sys),
 .clk_slow(clk_slow),
+.pluse_us(pluse_us),
 .rst_n(rst_n)
 );
+
+
+//--------- control_top --------
+//fx_bus
+wire 				fx_wr;
+wire [7:0]	fx_data;
+wire [21:0]	fx_waddr;
+wire [21:0]	fx_raddr;
+wire 				fx_rd;
+wire  [7:0]	fx_q;
+control_top u_control_top(
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(fx_q),
+//clk rst
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+
+
+
+//---------- commu_top ----------
+commu_top u_commu_top(
+//uart slave
+.uart_tx(uart_tx),
+.uart_rx(uart_rx),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(fx_q),
+//clk rst
+.clk_sys(clk_sys),
+.pluse_us(pluse_us),
+.rst_n(rst_n)
+);
+
 
 
 //---------- ad_top --------

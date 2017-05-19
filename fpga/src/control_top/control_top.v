@@ -30,9 +30,19 @@ input rst_n;
 //-----------------------------------------
 
 
+//---------- configuration register ------
+cfg_reg u_cfg_reg(
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(fx_q),
+//clk rst
+.clk_sys(clk_sys),
+.rst_n(rst_n)
 
-//no logic 
-wire [7:0] fx_q;
-assign fx_q = 8'ha5;
+);
 
 endmodule

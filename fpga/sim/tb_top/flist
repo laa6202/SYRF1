@@ -30,6 +30,7 @@ tb.v
 ../../src/commu_top/phy_utx.v
 ../../src/commu_top/urx_filter.v
 ../../src/control_top/control_top.v
+../../src/control_top/cfg_reg.v
 
 
 

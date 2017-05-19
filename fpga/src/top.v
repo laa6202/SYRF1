@@ -190,6 +190,7 @@ control_top u_control_top(
 .fx_raddr(fx_raddr),
 .fx_q(fx_q),
 //clk rst
+.dev_id(6'h01),
 .clk_sys(clk_sys),
 .rst_n(rst_n)
 );
@@ -221,7 +222,7 @@ commu_top u_commu_top(
 //---------- ad_top --------
 wire [15:0]	ad1_data;
 wire				ad1_vld;
-ad_top u_ad_top(
+ad_top ad1_top(
 //ad interface
 .cs_n(ch1_cs_n),
 .sclk(ch1_sclk),
@@ -229,7 +230,15 @@ ad_top u_ad_top(
 //data path
 .ad_data(ad1_data),
 .ad_vld(ad1_vld),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(fx_q),
 //clk rst
+.dev_id(6'd11),
 .clk_sys(clk_sys),
 .rst_n(rst_n)
 );

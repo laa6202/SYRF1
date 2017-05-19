@@ -11,6 +11,7 @@ fx_raddr,
 fx_q,
 //clk rst
 clk_sys,
+dev_id,
 rst_n
 
 );
@@ -23,6 +24,7 @@ input [21:0]	fx_raddr;
 input 				fx_rd;
 output  [7:0]	fx_q;
 //clk rst
+input [5:0] dev_id;
 input clk_sys;
 input rst_n;
 

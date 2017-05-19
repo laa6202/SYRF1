@@ -12,6 +12,7 @@
 dv/clk_gen.v
 dv/rst_gen.v
 dv/ad_7226.v
+dv/rs232.v
 
 tb.v
 

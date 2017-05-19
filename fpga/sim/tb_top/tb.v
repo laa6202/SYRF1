@@ -29,6 +29,14 @@ ad_7226 u_ad_7226(
 );
 
 
+//---------- uart and SPI master ------
+wire uart_mosi;
+wire uart_miso;
+rs232 rs232_master(
+.uart_tx(uart_mosi),
+.uart_rx(uart_miso)
+);
+
 //---------- DUT -----------
 top syrf1_top(
 //ad inf
@@ -36,8 +44,8 @@ top syrf1_top(
 .ch1_sclk(sclk),
 .ch1_sdata(sdata),
 //uart slave
-.uart_tx(),
-.uart_rx(),
+.uart_tx(uart_miso),
+.uart_rx(uart_mosi),
 //clk rst 
 .mclk0(mclk0),
 .mclk1(mclk1),

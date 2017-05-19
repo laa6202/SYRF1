@@ -148,14 +148,39 @@ clk_rst_top u_clk_rst(
 );
 
 
-//--------- control_top --------
-//fx_bus
+
+//---------- fx bus ------------
 wire 				fx_wr;
 wire [7:0]	fx_data;
 wire [21:0]	fx_waddr;
 wire [21:0]	fx_raddr;
 wire 				fx_rd;
 wire  [7:0]	fx_q;
+wire 				ufx_wr;
+wire [7:0]	ufx_data;
+wire [21:0]	ufx_waddr;
+wire [21:0]	ufx_raddr;
+wire 				ufx_rd;
+wire  [7:0]	ufx_q;
+fx_bus u_fx_bus(
+//fx bus for salve
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(fx_q),
+//fx bus for uart maseter
+.ufx_waddr(ufx_waddr),
+.ufx_wr(ufx_wr),
+.ufx_data(ufx_data),
+.ufx_rd(ufx_rd),
+.ufx_raddr(ufx_raddr),
+.ufx_q(ufx_q)
+);
+
+
+//--------- control_top --------
 control_top u_control_top(
 //fx bus
 .fx_waddr(fx_waddr),
@@ -171,18 +196,20 @@ control_top u_control_top(
 
 
 
+
+
 //---------- commu_top ----------
 commu_top u_commu_top(
 //uart slave
 .uart_tx(uart_tx),
 .uart_rx(uart_rx),
 //fx bus
-.fx_waddr(fx_waddr),
-.fx_wr(fx_wr),
-.fx_data(fx_data),
-.fx_rd(fx_rd),
-.fx_raddr(fx_raddr),
-.fx_q(fx_q),
+.fx_waddr(ufx_waddr),
+.fx_wr(ufx_wr),
+.fx_data(ufx_data),
+.fx_rd(ufx_rd),
+.fx_raddr(ufx_raddr),
+.fx_q(ufx_q),
 //clk rst
 .clk_sys(clk_sys),
 .pluse_us(pluse_us),

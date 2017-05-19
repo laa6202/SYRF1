@@ -1,1 +1,5 @@
 /fpga/sim/tb_top/work
+/fpga/dev/output_files/*.summary
+/fpga/dev/output_files/*.rpt
+/fpga/dev/incremental_db
+/fpga/dev/db

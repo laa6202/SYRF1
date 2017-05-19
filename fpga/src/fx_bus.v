@@ -7,7 +7,23 @@ fx_wr,
 fx_data,
 fx_rd,
 fx_raddr,
-fx_q,
+con_fx_q,
+ad1_fx_q,
+ad2_fx_q,
+ad3_fx_q,
+ad4_fx_q,
+ad5_fx_q,
+ad6_fx_q,
+ad7_fx_q,
+ad8_fx_q,
+dsp1_fx_q,
+dsp2_fx_q,
+dsp3_fx_q,
+dsp4_fx_q,
+dsp5_fx_q,
+dsp6_fx_q,
+dsp7_fx_q,
+dsp8_fx_q,
 //fx bus for uart maseter
 ufx_waddr,
 ufx_wr,
@@ -23,7 +39,23 @@ output [7:0]	fx_data;
 output [21:0]	fx_waddr;
 output [21:0]	fx_raddr;
 output 				fx_rd;
-input  [7:0]	fx_q;
+input  [7:0]	con_fx_q;
+input  [7:0]	ad1_fx_q;
+input  [7:0]	ad2_fx_q;
+input  [7:0]	ad3_fx_q;
+input  [7:0]	ad4_fx_q;
+input  [7:0]	ad5_fx_q;
+input  [7:0]	ad6_fx_q;
+input  [7:0]	ad7_fx_q;
+input  [7:0]	ad8_fx_q;
+input  [7:0] dsp1_fx_q;
+input  [7:0] dsp2_fx_q;
+input  [7:0] dsp3_fx_q;
+input  [7:0] dsp4_fx_q;
+input  [7:0] dsp5_fx_q;
+input  [7:0] dsp6_fx_q;
+input  [7:0] dsp7_fx_q;
+input  [7:0] dsp8_fx_q;
 //fx bus for uart maseter
 input 				ufx_wr;
 input [7:0]		ufx_data;
@@ -50,7 +82,11 @@ assign fx_rd = ufx_rd;
 
 //-------- from salve to master --------
 wire  [7:0]	ufx_q;
-assign ufx_q = fx_q;
+assign ufx_q = 	con_fx_q |
+								ad1_fx_q | ad2_fx_q | ad3_fx_q | ad4_fx_q|
+								ad5_fx_q | ad6_fx_q | ad7_fx_q | ad8_fx_q|
+								dsp1_fx_q|dsp2_fx_q |dsp3_fx_q |dsp4_fx_q|
+								dsp5_fx_q|dsp6_fx_q |dsp7_fx_q |dsp8_fx_q;
 
 
 endmodule

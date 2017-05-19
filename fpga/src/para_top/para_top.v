@@ -1,7 +1,9 @@
 //para_top.v
 
 module para_top(
-
+//data path
+ad_data,
+ad_vld,
 //fx bus
 fx_waddr,
 fx_wr,
@@ -10,8 +12,8 @@ fx_rd,
 fx_raddr,
 fx_q,
 //clk rst
-clk_sys,
 dev_id,
+clk_sys,
 rst_n
 );
 

@@ -13,8 +13,11 @@ add wave -noupdate /tb/syrf1_top/u_control_top/u_cfg_reg/fx_rd
 add wave -noupdate /tb/syrf1_top/u_control_top/u_cfg_reg/fx_q
 add wave -noupdate /tb/syrf1_top/u_control_top/u_cfg_reg/cfg_dbg5
 add wave -noupdate /tb/syrf1_top/u_control_top/u_cfg_reg/q0
+add wave -noupdate /tb/syrf1_top/ad1_top/u_ad_regs/now_rd
+add wave -noupdate /tb/syrf1_top/ad1_top/u_ad_regs/dev_id
+add wave -noupdate /tb/syrf1_top/ad1_top/u_ad_regs/q0
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {5530 ns} 0}
+WaveRestoreCursors {{Cursor 1} {6239 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 321
 configure wave -valuecolwidth 100
@@ -30,4 +33,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {0 ns} {12288 ns}
+WaveRestoreZoom {0 ns} {7350 ns}

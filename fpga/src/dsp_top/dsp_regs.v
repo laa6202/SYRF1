@@ -1,6 +1,8 @@
-//cfg_reg.v
+//ad_regs.v
 
-module cfg_reg(
+
+module dsp_regs(
+
 //fx bus
 fx_waddr,
 fx_wr,
@@ -12,7 +14,6 @@ fx_q,
 dev_id,
 clk_sys,
 rst_n
-
 );
 
 //fx_bus
@@ -26,9 +27,9 @@ output  [7:0]	fx_q;
 input [5:0] dev_id;
 input clk_sys;
 input rst_n;
+//--------------------------------------
+//--------------------------------------
 
-//-----------------------------------------
-//-----------------------------------------
 
 wire dev_wsel = (fx_waddr[21:16]== dev_id) ? 1'b1 :1'b0;
 wire dev_rsel = (fx_raddr[21:16]== dev_id) ? 1'b1 :1'b0;
@@ -105,6 +106,5 @@ end
 
 wire [7:0] fx_q;
 assign fx_q = q0;
-	
-	
+
 endmodule

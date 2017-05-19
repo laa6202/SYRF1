@@ -32,9 +32,9 @@ ad_7226 u_ad_7226(
 //---------- DUT -----------
 top syrf1_top(
 //ad inf
-.cs_n(cs_n),
-.sclk(sclk),
-.sdata(sdata),
+.ch1_cs_n(cs_n),
+.ch1_sclk(sclk),
+.ch1_sdata(sdata),
 //uart slave
 .uart_tx(),
 .uart_rx(),

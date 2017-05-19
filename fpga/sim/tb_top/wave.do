@@ -5,6 +5,9 @@ add wave -noupdate /tb/syrf1_top/u_ad_top/sclk
 add wave -noupdate /tb/syrf1_top/u_ad_top/sdata
 add wave -noupdate /tb/syrf1_top/u_ad_top/ad_data
 add wave -noupdate /tb/syrf1_top/u_ad_top/ad_vld
+add wave -noupdate /tb/syrf1_top/ch1_cs_n
+add wave -noupdate /tb/syrf1_top/ch1_sclk
+add wave -noupdate /tb/syrf1_top/ch1_sdata
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {952 ns} 0}
 quietly wave cursor active 1

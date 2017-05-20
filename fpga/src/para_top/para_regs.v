@@ -8,6 +8,8 @@ fx_data,
 fx_rd,
 fx_raddr,
 fx_q,
+//register
+sta_para_ave,
 //clk rst
 dev_id,
 clk_sys,
@@ -22,6 +24,8 @@ input [21:0]	fx_waddr;
 input [21:0]	fx_raddr;
 input 				fx_rd;
 output  [7:0]	fx_q;
+//register
+input [15:0] sta_para_ave;
 //clk rst
 input [5:0] dev_id;
 input clk_sys;
@@ -86,7 +90,9 @@ always @(posedge clk_sys or negedge rst_n)	begin
 	end
 	else if(now_rd) begin
 		case(fx_raddr[15:0])
-			16'h0  : q0 <= dev_id;
+			16'h0  : q0 <= {2'h0,dev_id};
+			16'h50 : q0 <= sta_para_ave[7:0];
+			16'h51 : q0 <= sta_para_ave[15:8];
 			16'h80 : q0 <= cfg_dbg0;
 			16'h81 : q0 <= cfg_dbg1;
 			16'h82 : q0 <= cfg_dbg2;

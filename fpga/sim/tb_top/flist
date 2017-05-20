@@ -36,6 +36,8 @@ tb.v
 ../../src/dsp_top/dsp_regs.v
 ../../src/para_top/para_top.v
 ../../src/para_top/para_regs.v
+../../src/para_top/para_time.v
+../../src/para_top/para_hit.v
 
 
 

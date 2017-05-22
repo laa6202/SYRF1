@@ -75,14 +75,14 @@ always @ (posedge clk_sys or negedge rst_n)	begin
 	else begin
 		case(cnt_us)
 			8'd0  : rec_data <= 8'h0;
-			8'd13 : rec_data[7] <= urx_data;
-			8'd22 : rec_data[6] <= urx_data;
-			8'd31 : rec_data[5] <= urx_data;
-			8'd39 : rec_data[4] <= urx_data;
-			8'd48 : rec_data[3] <= urx_data;
-			8'd57 : rec_data[2] <= urx_data;
-			8'd65 : rec_data[1] <= urx_data;
-			8'd74 : rec_data[0] <= urx_data;
+			8'd13 : rec_data[0] <= urx_data;
+			8'd22 : rec_data[1] <= urx_data;
+			8'd31 : rec_data[2] <= urx_data;
+			8'd39 : rec_data[3] <= urx_data;
+			8'd48 : rec_data[4] <= urx_data;
+			8'd57 : rec_data[5] <= urx_data;
+			8'd65 : rec_data[6] <= urx_data;
+			8'd74 : rec_data[7] <= urx_data;
 			default : ;
 		endcase
 	end
@@ -93,7 +93,7 @@ always @ (posedge clk_sys or negedge rst_n)	begin
 		rx_data <= 8'h0;
 	end
 	else begin
-		rx_vld <= (cnt_us == 8'd97) ? 1'b1 : 1'b0;
+		rx_vld <= (cnt_us == 8'd97) ? pluse_us : 1'b0;
 		rx_data <= (cnt_us == 8'd97) ? rec_data : rx_data;
 	end
 end

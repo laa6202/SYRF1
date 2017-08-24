@@ -3,3 +3,4 @@
 /fpga/dev/output_files/*.rpt
 /fpga/dev/incremental_db
 /fpga/dev/db
+/fpga2/sim/tb_top/work

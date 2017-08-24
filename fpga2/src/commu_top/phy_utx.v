@@ -1,4 +1,8 @@
 //phy_utx.v
+//if uart send 55AA for debug open this macro
+//`define SEND_55AA_TEST
+`define SEND_55AA_TEST
+
 
 module phy_utx(
 uart_tx,
@@ -20,6 +24,9 @@ input rst_n;
 //---------------------------------
 
 
+wire [7:0] 	tx_data_r;
+wire 				tx_vld_r;
+
 //--------- main counter ----------
 reg [7:0] cnt_us;
 always @ (posedge clk_sys or negedge rst_n)	begin
@@ -27,12 +34,30 @@ always @ (posedge clk_sys or negedge rst_n)	begin
 		cnt_us <= 8'd0;
 	else if(cnt_us== 8'd99)
 			cnt_us <= 8'd0;
-	else if(tx_vld)
-		cnt_us <= 8'd1;		
 	else if(cnt_us != 8'd0)
-			cnt_us <= pluse_us ? (cnt_us + 8'h1) : cnt_us;
+			cnt_us <= pluse_us ? (cnt_us + 8'h1) : cnt_us;			
+	else if(tx_vld_r)
+		cnt_us <= 8'd1;		
 	else ;
 end
+
+
+//-------- data prepare ----------
+`ifndef SEND_55AA_TEST
+	assign tx_data_r = tx_data;
+	assign tx_vld_r  = tx_vld;
+`else 
+	assign tx_vld_r = 1'b1;
+	reg flag;
+	always @(posedge clk_sys or negedge rst_n)	begin
+		if(~rst_n)
+			flag <= 1'b0;
+		else if((cnt_us == 8'd90) & (pluse_us))
+			flag <= ~flag;
+		else ;
+	end
+	assign tx_data_r = flag ? 8'h55: 8'haa;
+`endif
 
 reg xor_tx;
 reg [7:0] lock_tx;
@@ -41,9 +66,9 @@ always @ (posedge clk_sys or negedge rst_n)	begin
 		xor_tx <= 1'b0;
 		lock_tx <= 8'h0;
 	end
-	else if(tx_vld) begin
-		xor_tx <= ^tx_data;
-		lock_tx <= tx_data;
+	else if(tx_vld_r) begin
+		xor_tx <= ^tx_data_r;
+		lock_tx <= tx_data_r;
 	end
 	else ;
 end

@@ -8,6 +8,8 @@ uart_tx,
 uart_rx,
 //clk rst 
 mclk0,
+mclk1,
+mclk2,
 hrst_n
 
 );

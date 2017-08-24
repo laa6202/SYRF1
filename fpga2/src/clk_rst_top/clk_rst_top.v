@@ -1,4 +1,7 @@
 //clk_rst_top.v
+//if use ZEDBOARD,open macro ZEDBOARD
+//`define ZEDBOARD
+//`define ZEDBOARD
 
 
 module clk_rst_top(
@@ -27,17 +30,22 @@ assign rst_n = hrst_n;
 
 wire clk_100m;
 wire clk_1m;
-`ifndef SIM
-sgpll u_sgpll(
-.areset(1'b0),
-.inclk0(mclk0),
-.c0(clk_100m),
-.c1(clk_1m),
-.locked()
-);
-`else
+`ifdef SIM
 assign clk_100m = mclk1;
 assign clk_1m = mclk2;
+`else 
+	`ifdef ZEDBOARD
+		assign clk_100m = mclk0;
+		assign clk_1m = mclk2;
+	`else
+	sgpll u_sgpll(
+	.areset(1'b0),
+	.inclk0(mclk0),
+	.c0(clk_100m),
+	.c1(clk_1m),
+	.locked()
+	);
+	`endif
 `endif
 
 wire clk_sys;

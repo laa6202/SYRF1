@@ -11,7 +11,7 @@ C:\Tools\modeltech64_10.2c\win64\vlog.exe -reportprogress 300 -f flist
 -- Skipping module commu_top
 -- Skipping module fx_master
 -- Skipping module phy_urx
--- Skipping module phy_utx
+-- Compiling module phy_utx
 -- Skipping module urx_filter
 
 Top level modules:

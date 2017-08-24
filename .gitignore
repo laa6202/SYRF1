@@ -4,3 +4,7 @@
 /fpga/dev/incremental_db
 /fpga/dev/db
 /fpga2/sim/tb_top/work
+/fpga2/xilinx
+/fpga2/dev/output_files
+/fpga2/dev/db
+/fpga2/dev/incremental_db

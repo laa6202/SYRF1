@@ -28,16 +28,16 @@ wire [7:0] 	tx_data_r;
 wire 				tx_vld_r;
 
 //--------- main counter ----------
-reg [7:0] cnt_us;
+reg [15:0] cnt_us;
 always @ (posedge clk_sys or negedge rst_n)	begin
 	if(~rst_n)
-		cnt_us <= 8'd0;
-	else if(cnt_us== 8'd99)
-			cnt_us <= 8'd0;
-	else if(cnt_us != 8'd0)
-			cnt_us <= pluse_us ? (cnt_us + 8'h1) : cnt_us;			
+		cnt_us <= 16'd0;
+	else if(cnt_us== 16'd399)
+			cnt_us <= 16'd0;
+	else if(cnt_us != 16'd0)
+			cnt_us <= pluse_us ? (cnt_us + 16'h1) : cnt_us;			
 	else if(tx_vld_r)
-		cnt_us <= 8'd1;		
+		cnt_us <= 16'd1;		
 	else ;
 end
 
@@ -52,7 +52,7 @@ end
 	always @(posedge clk_sys or negedge rst_n)	begin
 		if(~rst_n)
 			flag <= 1'b0;
-		else if((cnt_us == 8'd90) & (pluse_us))
+		else if((cnt_us == 16'd90) & (pluse_us))
 			flag <= ~flag;
 		else ;
 	end
@@ -81,17 +81,17 @@ always @ (posedge clk_sys or negedge rst_n)	begin
 		uart_tx <= 1'b1;
 	else if(pluse_us)	begin
 		case(cnt_us)
-			8'd1 : uart_tx <= 1'b0;		//start bit
-			8'd9 : uart_tx <= lock_tx[0];
-			8'd18 : uart_tx <= lock_tx[1];
-			8'd26 : uart_tx <= lock_tx[2];
-			8'd35 : uart_tx <= lock_tx[3];
-			8'd44 : uart_tx <= lock_tx[4];
-			8'd53 : uart_tx <= lock_tx[5];
-			8'd61 : uart_tx <= lock_tx[6];
-			8'd70 : uart_tx <= lock_tx[7];
-			8'd79 : uart_tx <= 1'b1;	//no XOR_TX
-			8'd87 : uart_tx <= 1'b1;	//stop bit
+			16'd1 : uart_tx <= 1'b0;		//start bit
+			16'd9 : uart_tx <= lock_tx[0];
+			16'd18 : uart_tx <= lock_tx[1];
+			16'd26 : uart_tx <= lock_tx[2];
+			16'd35 : uart_tx <= lock_tx[3];
+			16'd44 : uart_tx <= lock_tx[4];
+			16'd53 : uart_tx <= lock_tx[5];
+			16'd61 : uart_tx <= lock_tx[6];
+			16'd70 : uart_tx <= lock_tx[7];
+			16'd79 : uart_tx <= 1'b1;	//no XOR_TX
+			16'd87 : uart_tx <= 1'b1;	//stop bit
 			default : ;
 		endcase
 	end

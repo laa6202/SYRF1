@@ -1,7 +1,7 @@
 //phy_utx.v
 //if uart send 55AA for debug open this macro
 //`define SEND_55AA_TEST
-`define SEND_55AA_TEST
+//`define SEND_55AA_TEST
 
 
 module phy_utx(

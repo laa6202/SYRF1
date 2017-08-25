@@ -1,7 +1,7 @@
 //clk_rst_top.v
 //if use ZEDBOARD,open macro ZEDBOARD
 //`define ZEDBOARD
-//`define ZEDBOARD
+`define ZEDBOARD
 
 
 module clk_rst_top(

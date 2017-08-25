@@ -1,6 +1,6 @@
 //commu_top.v
 //`define LOOP_BACK_UART_TEST
-//`define LOOP_BACK_UART_TEST
+`define LOOP_BACK_UART_TEST
 
 
 module commu_top(
@@ -20,8 +20,8 @@ pluse_us,
 rst_n
 );
 //uart slave
-output 	uart_tx;
-input 	uart_rx;
+(*mark_debug = "true"*)output 	uart_tx;
+(*mark_debug = "true"*)input 	uart_rx;
 //fx_bus
 output 				fx_wr;
 output [7:0]	fx_data;
@@ -32,14 +32,14 @@ input  [7:0]	fx_q;
 //clk rst
 input clk_sys;
 input pluse_us;
-input rst_n;
+(*mark_debug = "true"*)input rst_n;
 //-----------------------------------------
 //-----------------------------------------
 
 
 //--------- uart physical level ---------
-wire [7:0] 	rx_data;
-wire				rx_vld;
+(*mark_debug = "true"*)wire [7:0] 	rx_data;
+(*mark_debug = "true"*)wire				rx_vld;
 phy_urx u_phy_urx(
 .uart_rx(uart_rx),
 .rx_data(rx_data),

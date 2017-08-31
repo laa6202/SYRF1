@@ -1,6 +1,6 @@
 //sclk_gen.v
-`define DIV 8'h2
-`define DIV_HALF	8'h1
+`define DIV 8'd50
+`define DIV_HALF	8'd25
 
 
 module sclk_gen(

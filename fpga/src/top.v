@@ -34,31 +34,8 @@ uart_rx,
 //ast led boot num
 ast_ctrl,
 led,
-boot,
+//boot,
 num,
-//sd
-sd_busy,
-sd_pwctrl,
-sd_uart_rx,
-sd_uart_tx,
-//3g model
-g3_uart_tx,
-g3_uart_rx,
-g3_link,
-g3_full,
-g3_rst,
-g3_sel,
-//SPI and I2C
-spi1_nss,
-spi1_sck,
-spi1_miso,
-spi1_mosi,
-spi2_nss,
-spi2_sck,
-spi2_miso,
-spi2_mosi,
-i2c1_scl,
-i2c1_sda,
 //clk rst 
 mclk0,
 mclk1,
@@ -97,32 +74,8 @@ input  uart_rx;
 //ast led boot num
 output [7:0] ast_ctrl;
 output [2:0]	led;
-input	 [7:0]	boot;
+//input	 [7:0]	boot;
 input  [7:0]	num;
-//sd farm
-input 	sd_busy;
-input 	sd_pwctrl;
-input 	sd_uart_rx;
-output 	sd_uart_tx;
-
-//3g modle
-output	g3_uart_tx;
-input		g3_uart_rx;
-input		g3_link;
-input		g3_full;
-output	g3_rst;
-output	g3_sel;
-//SPI and I2C
-input 	spi1_nss;
-input 	spi1_sck;
-output 	spi1_miso;
-input 	spi1_mosi;
-output 	spi2_nss;
-output 	spi2_sck;
-input 	spi2_miso;
-output 	spi2_mosi;
-input i2c1_scl;
-inout i2c1_sda;
 //clk rst
 input 				mclk0;
 input 				mclk1;

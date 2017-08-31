@@ -42,6 +42,7 @@ cfg_reg u_cfg_reg(
 .fx_raddr(fx_raddr),
 .fx_q(fx_q),
 //clk rst
+.dev_id(dev_id),
 .clk_sys(clk_sys),
 .rst_n(rst_n)
 

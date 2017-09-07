@@ -32,13 +32,19 @@ always @ (posedge clk_sys)
 	csn_reg <= cs_n;
 wire cs_rasing = (~csn_reg) & cs_n;
 
+reg sclk_reg;
+always @ (posedge clk_sys )
+	sclk_reg <= sclk;
+wire sclk_rasing = (~sclk_reg) & sclk;
 
+
+//---------- 
 reg [12:0] data;
 always @ (posedge clk_sys or negedge rst_n)	begin
 	if(~rst_n)
 		data <= 13'h0;
 	else if(cs_n == 1'b0)	begin	
-		if(sclk == 1'b1)
+		if(sclk_rasing)
 			data <= {data[11:0],sdata};
 		else ;
 	end

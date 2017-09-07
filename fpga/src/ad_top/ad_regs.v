@@ -2,7 +2,6 @@
 
 
 module ad_regs(
-
 //fx bus
 fx_waddr,
 fx_wr,
@@ -10,6 +9,10 @@ fx_data,
 fx_rd,
 fx_raddr,
 fx_q,
+//reg 
+cfg_ave,
+stu_data_s1,
+stu_data_s2,
 //clk rst
 dev_id,
 clk_sys,
@@ -23,6 +26,10 @@ input [21:0]	fx_waddr;
 input [21:0]	fx_raddr;
 input 				fx_rd;
 output  [7:0]	fx_q;
+//regs
+output[7:0]	cfg_ave;
+input [15:0]	stu_data_s1;
+input [15:0]	stu_data_s2;
 //clk rst
 input [5:0] dev_id;
 input clk_sys;
@@ -39,6 +46,7 @@ wire now_rd = fx_rd & dev_rsel;
 
 
 //--------- register --------
+reg [7:0] cfg_ave;
 reg [7:0] cfg_dbg0;
 reg [7:0] cfg_dbg1;
 reg [7:0] cfg_dbg2;
@@ -53,6 +61,7 @@ reg [7:0] cfg_dbg7;
 //--------- write register ----------
 always @ (posedge clk_sys or negedge rst_n)	begin
 	if(~rst_n)	begin
+		cfg_ave <= 8'h2;
 		cfg_dbg0 <= 8'h80;
 		cfg_dbg1 <= 8'h81;
 		cfg_dbg2 <= 8'h82;
@@ -64,6 +73,7 @@ always @ (posedge clk_sys or negedge rst_n)	begin
 	end
 	else if(now_wr) begin
 		case(fx_waddr[15:0])
+			16'h20 : cfg_ave <= fx_data; 
 			16'h80 : cfg_dbg0 <= fx_data;
 			16'h81 : cfg_dbg1 <= fx_data;
 			16'h82 : cfg_dbg2 <= fx_data;
@@ -88,6 +98,11 @@ always @(posedge clk_sys or negedge rst_n)	begin
 	else if(now_rd) begin
 		case(fx_raddr[15:0])
 			16'h0  : q0 <= dev_id;
+			16'h10 : q0 <= stu_data_s1[7:0];
+			16'h12 : q0 <= stu_data_s1[15:8];
+			16'h13 : q0 <= stu_data_s2[7:0];
+			16'h14 : q0 <= stu_data_s2[15:8];
+			16'h20 : q0 <= cfg_ave;
 			16'h80 : q0 <= cfg_dbg0;
 			16'h81 : q0 <= cfg_dbg1;
 			16'h82 : q0 <= cfg_dbg2;

@@ -99,9 +99,9 @@ always @(posedge clk_sys or negedge rst_n)	begin
 		case(fx_raddr[15:0])
 			16'h0  : q0 <= dev_id;
 			16'h10 : q0 <= stu_data_s1[7:0];
-			16'h12 : q0 <= stu_data_s1[15:8];
-			16'h13 : q0 <= stu_data_s2[7:0];
-			16'h14 : q0 <= stu_data_s2[15:8];
+			16'h11 : q0 <= stu_data_s1[15:8];
+			16'h12 : q0 <= stu_data_s2[7:0];
+			16'h13 : q0 <= stu_data_s2[15:8];
 			16'h20 : q0 <= cfg_ave;
 			16'h80 : q0 <= cfg_dbg0;
 			16'h81 : q0 <= cfg_dbg1;

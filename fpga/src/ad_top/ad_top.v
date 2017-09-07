@@ -56,7 +56,7 @@ ad_regs u_ad_regs(
 //reg 
 .cfg_ave(cfg_ave),
 .stu_data_s1(ad_data_s1),
-.stu_data_s2(),
+.stu_data_s2(ad_data_s2),
 //clk rst
 .dev_id(dev_id),
 .clk_sys(clk_sys),

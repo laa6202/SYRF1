@@ -8,6 +8,7 @@ fx_data,
 fx_rd,
 fx_raddr,
 con_fx_q,
+app_fx_q,
 ad1_fx_q,
 ad2_fx_q,
 ad3_fx_q,
@@ -32,6 +33,7 @@ p5_fx_q,
 p6_fx_q,
 p7_fx_q,
 p8_fx_q,
+
 //fx bus for uart maseter
 ufx_waddr,
 ufx_wr,
@@ -48,6 +50,7 @@ output [21:0]	fx_waddr;
 output [21:0]	fx_raddr;
 output 				fx_rd;
 input  [7:0]	con_fx_q;
+input  [7:0]	app_fx_q;
 input  [7:0]	ad1_fx_q;
 input  [7:0]	ad2_fx_q;
 input  [7:0]	ad3_fx_q;
@@ -98,7 +101,7 @@ assign fx_rd = ufx_rd;
 
 //-------- from salve to master --------
 wire  [7:0]	ufx_q;
-assign ufx_q = 	con_fx_q |
+assign ufx_q = 	con_fx_q | app_fx_q | 
 								ad1_fx_q | ad2_fx_q | ad3_fx_q | ad4_fx_q|
 								ad5_fx_q | ad6_fx_q | ad7_fx_q | ad8_fx_q|
 								dsp1_fx_q|dsp2_fx_q |dsp3_fx_q |dsp4_fx_q|

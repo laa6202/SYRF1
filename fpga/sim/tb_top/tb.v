@@ -64,6 +64,11 @@ top syrf1_top(
 .ch8_cs_n(),
 .ch8_sclk(),
 .ch8_sdata(1'b0),
+//led and irq
+.ast_ctrl(),
+.irq_n(),
+.led(),
+.num(8'h0),
 //uart slave
 .uart_tx(uart_miso),
 .uart_rx(uart_mosi),

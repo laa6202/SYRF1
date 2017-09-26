@@ -18,6 +18,8 @@ ph7_ring,
 ph7_vld,
 ph8_ring,
 ph8_vld,
+//irq and led
+irq_n,
 //fx bus
 fx_waddr,
 fx_wr,
@@ -47,6 +49,8 @@ input [15:0]	ph7_ring;
 input 				ph7_vld;
 input [15:0]	ph8_ring;
 input 				ph8_vld;
+//irq and led
+output irq_n;
 //fx_bus
 input 				fx_wr;
 input [7:0]		fx_data;
@@ -84,6 +88,121 @@ app_reg u_app_reg(
 .clk_sys(clk_sys),
 .rst_n(rst_n)
 
+);
+
+wire irq = |stu_fracture;
+wire irq_n = ~irq;
+
+
+//--------- fracture --------
+fracture u_frac1(
+//para input 
+.ph_ring(ph1_ring),
+.ph_vld(ph1_vld),
+//register
+.cfg_ring_th(cfg_ring_th),
+.stu_action(stu_fracture[0]),
+.clr_action(clr_fracture[0]),
+//clk rst
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+
+
+fracture u_frac2(
+//para input 
+.ph_ring(ph2_ring),
+.ph_vld(ph2_vld),
+//register
+.cfg_ring_th(cfg_ring_th),
+.stu_action(stu_fracture[1]),
+.clr_action(clr_fracture[1]),
+//clk rst
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+
+
+fracture u_frac3(
+//para input 
+.ph_ring(ph3_ring),
+.ph_vld(ph3_vld),
+//register
+.cfg_ring_th(cfg_ring_th),
+.stu_action(stu_fracture[2]),
+.clr_action(clr_fracture[2]),
+//clk rst
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+
+fracture u_frac4(
+//para input 
+.ph_ring(ph4_ring),
+.ph_vld(ph4_vld),
+//register
+.cfg_ring_th(cfg_ring_th),
+.stu_action(stu_fracture[3]),
+.clr_action(clr_fracture[3]),
+//clk rst
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+
+
+fracture u_frac5(
+//para input 
+.ph_ring(ph5_ring),
+.ph_vld(ph5_vld),
+//register
+.cfg_ring_th(cfg_ring_th),
+.stu_action(stu_fracture[4]),
+.clr_action(clr_fracture[4]),
+//clk rst
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+
+
+fracture u_frac6(
+//para input 
+.ph_ring(ph6_ring),
+.ph_vld(ph6_vld),
+//register
+.cfg_ring_th(cfg_ring_th),
+.stu_action(stu_fracture[5]),
+.clr_action(clr_fracture[5]),
+//clk rst
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+
+
+fracture u_frac7(
+//para input 
+.ph_ring(ph7_ring),
+.ph_vld(ph7_vld),
+//register
+.cfg_ring_th(cfg_ring_th),
+.stu_action(stu_fracture[6]),
+.clr_action(clr_fracture[6]),
+//clk rst
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+
+
+fracture u_frac8(
+//para input 
+.ph_ring(ph8_ring),
+.ph_vld(ph8_vld),
+//register
+.cfg_ring_th(cfg_ring_th),
+.stu_action(stu_fracture[7]),
+.clr_action(clr_fracture[7]),
+//clk rst
+.clk_sys(clk_sys),
+.rst_n(rst_n)
 );
 
 

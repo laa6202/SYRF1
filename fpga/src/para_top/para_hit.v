@@ -65,6 +65,9 @@ hit_ring u_hit_ring(
 .stu_now_hit(stu_now_hit),
 .stu_now_lock(stu_now_lock),
 .stu_ring(stu_ring),
+//para
+.ph_ring(ph_ring),
+.ph_vld(ph_vld),
 //clk rst
 .clk_sys(clk_sys),
 .rst_n(rst_n)

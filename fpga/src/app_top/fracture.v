@@ -26,7 +26,17 @@ input rst_n;
 //----------------------------------
 
 
-
+reg stu_action;
+always @ (posedge clk_sys or negedge rst_n)	begin
+	if(~rst_n)
+		stu_action <= 1'b0;
+	else if(clr_action)
+		stu_action <= 1'b0;
+	else if(ph_vld)	
+		stu_action <= (ph_ring >= cfg_ring_th) ? 1'b1 : 1'b0;
+	else ;
+end
+		
 
 
 endmodule

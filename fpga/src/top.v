@@ -34,6 +34,7 @@ uart_rx,
 //ast led boot num
 ast_ctrl,
 led,
+irq_n,
 //boot,
 num,
 //clk rst 
@@ -74,6 +75,7 @@ input  uart_rx;
 //ast led boot num
 output [7:0] ast_ctrl;
 output [2:0]	led;
+output irq_n;
 //input	 [7:0]	boot;
 input  [7:0]	num;
 //clk rst
@@ -110,6 +112,7 @@ wire [21:0]	fx_waddr;
 wire [21:0]	fx_raddr;
 wire 				fx_rd;
 wire  [7:0]	con_fx_q;
+wire  [7:0] app_fx_q;
 wire  [7:0]	ad1_fx_q;
 wire  [7:0]	ad2_fx_q;
 wire  [7:0]	ad3_fx_q;
@@ -149,6 +152,7 @@ fx_bus u_fx_bus(
 .fx_rd(fx_rd),
 .fx_raddr(fx_raddr),
 .con_fx_q(con_fx_q),
+.app_fx_q(app_fx_q),
 .ad1_fx_q(ad1_fx_q),
 .ad2_fx_q(ad2_fx_q),
 .ad3_fx_q(ad3_fx_q),
@@ -577,10 +581,15 @@ dsp_top dsp8_top(
 
 
 //------------ para top --------
+wire [15:0]	ph1_ring;
+wire				ph1_vld;	
 para_top p1_top(
 //data path
 .sm_data(sm1_data),
 .sm_vld(sm1_vld),
+//para 
+.ph_ring(ph1_ring),
+.ph_vld(ph1_vld),
 //fx bus
 .fx_waddr(fx_waddr),
 .fx_wr(fx_wr),
@@ -594,10 +603,15 @@ para_top p1_top(
 .rst_n(rst_n)
 );
 
+wire [15:0]	ph2_ring;
+wire				ph2_vld;	
 para_top p2_top(
 //data path
 .sm_data(sm2_data),
 .sm_vld(sm2_vld),
+//para 
+.ph_ring(ph2_ring),
+.ph_vld(ph2_vld),
 //fx bus
 .fx_waddr(fx_waddr),
 .fx_wr(fx_wr),
@@ -611,10 +625,15 @@ para_top p2_top(
 .rst_n(rst_n)
 );
 
+wire [15:0]	ph3_ring;
+wire				ph3_vld;	
 para_top p3_top(
 //data path
 .sm_data(sm3_data),
 .sm_vld(sm3_vld),
+//para 
+.ph_ring(ph3_ring),
+.ph_vld(ph3_vld),
 //fx bus
 .fx_waddr(fx_waddr),
 .fx_wr(fx_wr),
@@ -628,4 +647,159 @@ para_top p3_top(
 .rst_n(rst_n)
 );
 
+wire [15:0]	ph4_ring;
+wire				ph4_vld;	
+para_top p4_top(
+//data path
+.sm_data(sm4_data),
+.sm_vld(sm4_vld),
+//para 
+.ph_ring(ph4_ring),
+.ph_vld(ph4_vld),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(p4_fx_q),
+//clk rst
+.dev_id(6'h23),
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+
+
+wire [15:0]	ph5_ring;
+wire				ph5_vld;	
+para_top p5_top(
+//data path
+.sm_data(sm5_data),
+.sm_vld(sm5_vld),
+//para 
+.ph_ring(ph5_ring),
+.ph_vld(ph5_vld),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(p5_fx_q),
+//clk rst
+.dev_id(6'h24),
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+
+
+wire [15:0]	ph6_ring;
+wire				ph6_vld;	
+para_top p6_top(
+//data path
+.sm_data(sm6_data),
+.sm_vld(sm6_vld),
+//para 
+.ph_ring(ph6_ring),
+.ph_vld(ph6_vld),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(p6_fx_q),
+//clk rst
+.dev_id(6'h25),
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+
+
+wire [15:0]	ph7_ring;
+wire				ph7_vld;	
+para_top p7_top(
+//data path
+.sm_data(sm7_data),
+.sm_vld(sm7_vld),
+//para 
+.ph_ring(ph7_ring),
+.ph_vld(ph7_vld),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(p7_fx_q),
+//clk rst
+.dev_id(6'h26),
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+
+
+wire [15:0]	ph8_ring;
+wire				ph8_vld;	
+para_top p8_top(
+//data path
+.sm_data(sm8_data),
+.sm_vld(sm8_vld),
+//para 
+.ph_ring(ph8_ring),
+.ph_vld(ph8_vld),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(p8_fx_q),
+//clk rst
+.dev_id(6'h27),
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+
+
+
+//---------- app_top ---------
+wire irq_n;
+app_top u_app_top(
+//para input 
+.ph1_ring(ph1_ring),
+.ph1_vld(ph1_vld),
+.ph2_ring(ph2_ring),
+.ph2_vld(ph2_vld),
+.ph3_ring(ph3_ring),
+.ph3_vld(ph3_vld),
+.ph4_ring(ph4_ring),
+.ph4_vld(ph4_vld),
+.ph5_ring(ph5_ring),
+.ph5_vld(ph5_vld),
+.ph6_ring(ph6_ring),
+.ph6_vld(ph6_vld),
+.ph7_ring(ph7_ring),
+.ph7_vld(ph7_vld),
+.ph8_ring(ph8_ring),
+.ph8_vld(ph8_vld),
+//irq and led
+.irq_n(irq_n),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(app_fx_q),
+//clk rst
+.dev_id(6'h02),
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+
+//-------- irq and led ----
+assign led[0] = irq_n;
+
+ 
 endmodule

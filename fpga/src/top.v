@@ -166,13 +166,13 @@ fx_bus u_fx_bus(
 .dsp7_fx_q(dsp7_fx_q),
 .dsp8_fx_q(dsp8_fx_q),
 .p1_fx_q(p1_fx_q),
-.p2_fx_q(8'h0),
-.p3_fx_q(8'h0),
-.p4_fx_q(8'h0),
-.p5_fx_q(8'h0),
-.p6_fx_q(8'h0),
-.p7_fx_q(8'h0),
-.p8_fx_q(8'h0),
+.p2_fx_q(p2_fx_q),
+.p3_fx_q(p3_fx_q),
+.p4_fx_q(p4_fx_q),
+.p5_fx_q(p5_fx_q),
+.p6_fx_q(p6_fx_q),
+.p7_fx_q(p7_fx_q),
+.p8_fx_q(p8_fx_q),
 //fx bus for uart maseter
 .ufx_waddr(ufx_waddr),
 .ufx_wr(ufx_wr),
@@ -594,7 +594,38 @@ para_top p1_top(
 .rst_n(rst_n)
 );
 
+para_top p2_top(
+//data path
+.sm_data(sm2_data),
+.sm_vld(sm2_vld),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(p2_fx_q),
+//clk rst
+.dev_id(6'h21),
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
 
-
+para_top p3_top(
+//data path
+.sm_data(sm3_data),
+.sm_vld(sm3_vld),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(p3_fx_q),
+//clk rst
+.dev_id(6'h22),
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
 
 endmodule

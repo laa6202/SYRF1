@@ -10,6 +10,11 @@ fx_raddr,
 fx_q,
 //register
 sta_para_ave,
+cfg_th,
+cfg_hdt,
+cfg_ldt,
+stu_hit_id,
+stu_ring,
 //clk rst
 dev_id,
 clk_sys,
@@ -26,6 +31,11 @@ input 				fx_rd;
 output  [7:0]	fx_q;
 //register
 input [15:0] sta_para_ave;
+output [15:0] cfg_th;
+output [15:0] cfg_hdt;
+output [15:0] cfg_ldt;
+input [15:0] stu_hit_id;
+input [15:0] stu_ring;
 //clk rst
 input [5:0] dev_id;
 input clk_sys;
@@ -42,6 +52,9 @@ wire now_rd = fx_rd & dev_rsel;
 
 
 //--------- register --------
+reg [15:0] 	cfg_th;
+reg [15:0]	cfg_hdt;
+reg [15:0]	cfg_ldt;
 reg [7:0] cfg_dbg0;
 reg [7:0] cfg_dbg1;
 reg [7:0] cfg_dbg2;
@@ -56,6 +69,9 @@ reg [7:0] cfg_dbg7;
 //--------- write register ----------
 always @ (posedge clk_sys or negedge rst_n)	begin
 	if(~rst_n)	begin
+		cfg_th	 <= 16'ha000;
+		cfg_hdt  <= 16'd1000;
+		cfg_ldt  <= 16'd2000;
 		cfg_dbg0 <= 8'h80;
 		cfg_dbg1 <= 8'h81;
 		cfg_dbg2 <= 8'h82;
@@ -67,6 +83,12 @@ always @ (posedge clk_sys or negedge rst_n)	begin
 	end
 	else if(now_wr) begin
 		case(fx_waddr[15:0])
+			16'h20 : cfg_th[7:0]  <= fx_data;
+			16'h21 : cfg_th[15:8] <= fx_data;
+			16'h22 : cfg_hdt[7:0]  <= fx_data;
+			16'h23 : cfg_hdt[15:8] <= fx_data;
+			16'h24 : cfg_ldt[7:0]  <= fx_data;
+			16'h25 : cfg_ldt[15:8] <= fx_data;
 			16'h80 : cfg_dbg0 <= fx_data;
 			16'h81 : cfg_dbg1 <= fx_data;
 			16'h82 : cfg_dbg2 <= fx_data;
@@ -91,6 +113,16 @@ always @(posedge clk_sys or negedge rst_n)	begin
 	else if(now_rd) begin
 		case(fx_raddr[15:0])
 			16'h0  : q0 <= {2'h0,dev_id};
+			16'h20 : q0 <= cfg_th[7:0];
+			16'h21 : q0 <= cfg_th[15:8];
+			16'h22 : q0 <= cfg_hdt[7:0];
+			16'h23 : q0 <= cfg_hdt[15:8];
+			16'h24 : q0 <= cfg_ldt[7:0];
+			16'h25 : q0 <= cfg_ldt[15:8];	
+			16'h30 : q0 <= stu_hit_id[7:0];
+			16'h31 : q0 <= stu_hit_id[15:0];
+			16'h32 : q0 <= stu_ring[7:0];
+			16'h33 : q0 <= stu_ring[15:8];
 			16'h50 : q0 <= sta_para_ave[7:0];
 			16'h51 : q0 <= sta_para_ave[15:8];
 			16'h80 : q0 <= cfg_dbg0;

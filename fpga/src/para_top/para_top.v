@@ -33,6 +33,13 @@ input rst_n;
 //--------------------------------------
 //--------------------------------------
 
+
+wire [15:0]	cfg_th;
+wire [15:0]	cfg_hdt;
+wire [15:0]	cfg_ldt;
+wire [15:0]	stu_hit_id;
+wire [15:0] stu_ring;
+
 //----------- register --------
 wire [15:0] sta_para_ave;
 para_regs u_para_regs( 
@@ -45,6 +52,11 @@ para_regs u_para_regs(
 .fx_q(fx_q),
 //register 
 .sta_para_ave(sta_para_ave),
+.cfg_th(cfg_th),
+.cfg_hdt(cfg_hdt),
+.cfg_ldt(cfg_ldt),
+.stu_hit_id(stu_hit_id),
+.stu_ring(stu_ring),
 //clk rst
 .dev_id(dev_id),
 .clk_sys(clk_sys),
@@ -59,6 +71,7 @@ para_time u_para_time(
 .sm_vld(sm_vld),
 //para output
 .sta_para_ave(sta_para_ave),
+
 //clk rst
 .clk_sys(clk_sys),
 .rst_n(rst_n)
@@ -70,7 +83,14 @@ para_hit u_para_hit(
 //data path
 .sm_data(sm_data),
 .sm_vld(sm_vld),
-
+//register
+.cfg_th(cfg_th),
+.cfg_hdt(cfg_hdt),
+.cfg_ldt(cfg_ldt),
+.stu_now_hit(),
+.stu_now_lock(),
+.stu_hit_id(stu_hit_id),
+.stu_ring(stu_ring),
 //clk rst
 .clk_sys(clk_sys),
 .rst_n(rst_n)

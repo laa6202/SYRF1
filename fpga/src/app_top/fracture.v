@@ -32,8 +32,11 @@ always @ (posedge clk_sys or negedge rst_n)	begin
 		stu_action <= 1'b0;
 	else if(clr_action)
 		stu_action <= 1'b0;
-	else if(ph_vld)	
-		stu_action <= (ph_ring >= cfg_ring_th) ? 1'b1 : 1'b0;
+	else if(stu_action == 1'b0)	begin
+		if(ph_vld)
+			stu_action <= (ph_ring >= cfg_ring_th) ? 1'b1 : 1'b0;
+		else ;
+	end
 	else ;
 end
 		

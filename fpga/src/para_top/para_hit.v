@@ -24,8 +24,8 @@ input [15:0]	sm_data;
 input					sm_vld;
 //register
 input [15:0]	cfg_th;
-input [15:0]	cfg_hdt;
-input [15:0]	cfg_ldt;
+input [31:0]	cfg_hdt;
+input [31:0]	cfg_ldt;
 output stu_now_hit;
 output stu_now_lock;
 output [15:0] stu_hit_id;

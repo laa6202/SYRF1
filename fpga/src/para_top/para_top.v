@@ -41,8 +41,8 @@ input rst_n;
 
 
 wire [15:0]	cfg_th;
-wire [15:0]	cfg_hdt;
-wire [15:0]	cfg_ldt;
+wire [31:0]	cfg_hdt;
+wire [31:0]	cfg_ldt;
 wire [15:0]	stu_hit_id;
 wire [15:0] stu_ring;
 

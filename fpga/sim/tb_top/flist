@@ -45,6 +45,9 @@ tb.v
 ../../src/app_top/app_top.v
 ../../src/app_top/app_reg.v
 ../../src/app_top/fracture.v
-
+../../src/ast_top/ast_top.v
+../../src/ast_top/ast_regs.v
+../../src/ast_top/ast_send.v
+../../src/ast_top/stu_check.v
 
 

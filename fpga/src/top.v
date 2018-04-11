@@ -137,6 +137,14 @@ wire [7:0]	p5_fx_q;
 wire [7:0]	p6_fx_q;
 wire [7:0]	p7_fx_q;
 wire [7:0]	p8_fx_q;
+wire [7:0] 	ast1_fx_q;
+wire [7:0] 	ast2_fx_q;
+wire [7:0] 	ast3_fx_q;
+wire [7:0] 	ast4_fx_q;
+wire [7:0] 	ast5_fx_q;
+wire [7:0] 	ast6_fx_q;
+wire [7:0] 	ast7_fx_q;
+wire [7:0] 	ast8_fx_q;
 //fx bus master
 wire 				ufx_wr;
 wire [7:0]	ufx_data;
@@ -761,6 +769,24 @@ para_top p8_top(
 .rst_n(rst_n)
 );
 
+
+//---------- ast_top ---------
+ast_top ast1_top(
+.ast(ast_ctrl[0]),
+.ad_data(ad1_data),
+.ad_vld(ad1_vld),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(ast1_fx_q),
+//clk rst
+.dev_id(6'h30),
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
 
 
 //---------- app_top ---------

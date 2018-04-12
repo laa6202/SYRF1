@@ -138,13 +138,13 @@ wire [7:0]	p6_fx_q;
 wire [7:0]	p7_fx_q;
 wire [7:0]	p8_fx_q;
 wire [7:0] 	ast1_fx_q;
-wire [7:0] 	ast2_fx_q = 8'h0;
-wire [7:0] 	ast3_fx_q = 8'h0;
-wire [7:0] 	ast4_fx_q = 8'h0;
-wire [7:0] 	ast5_fx_q = 8'h0;
-wire [7:0] 	ast6_fx_q = 8'h0;
-wire [7:0] 	ast7_fx_q = 8'h0;
-wire [7:0] 	ast8_fx_q = 8'h0;
+wire [7:0] 	ast2_fx_q;
+wire [7:0] 	ast3_fx_q;
+wire [7:0] 	ast4_fx_q;
+wire [7:0] 	ast5_fx_q;
+wire [7:0] 	ast6_fx_q;
+wire [7:0] 	ast7_fx_q;
+wire [7:0] 	ast8_fx_q;
 //fx bus master
 wire 				ufx_wr;
 wire [7:0]	ufx_data;
@@ -796,6 +796,133 @@ ast_top ast1_top(
 .pluse_us(pluse_us),
 .rst_n(rst_n)
 );
+
+ast_top ast2_top(
+.ast(ast_ctrl[1]),
+.ad_data(ad2_data),
+.ad_vld(ad2_vld),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(ast2_fx_q),
+//clk rst
+.dev_id(6'h31),
+.clk_sys(clk_sys),
+.pluse_us(pluse_us),
+.rst_n(rst_n)
+);
+
+ast_top ast3_top(
+.ast(ast_ctrl[2]),
+.ad_data(ad3_data),
+.ad_vld(ad3_vld),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(ast3_fx_q),
+//clk rst
+.dev_id(6'h32),
+.clk_sys(clk_sys),
+.pluse_us(pluse_us),
+.rst_n(rst_n)
+);
+
+ast_top ast4_top(
+.ast(ast_ctrl[3]),
+.ad_data(ad4_data),
+.ad_vld(ad4_vld),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(ast4_fx_q),
+//clk rst
+.dev_id(6'h33),
+.clk_sys(clk_sys),
+.pluse_us(pluse_us),
+.rst_n(rst_n)
+);
+
+ast_top ast5_top(
+.ast(ast_ctrl[4]),
+.ad_data(ad5_data),
+.ad_vld(ad5_vld),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(ast5_fx_q),
+//clk rst
+.dev_id(6'h34),
+.clk_sys(clk_sys),
+.pluse_us(pluse_us),
+.rst_n(rst_n)
+);
+
+ast_top ast6_top(
+.ast(ast_ctrl[5]),
+.ad_data(ad6_data),
+.ad_vld(ad6_vld),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(ast6_fx_q),
+//clk rst
+.dev_id(6'h35),
+.clk_sys(clk_sys),
+.pluse_us(pluse_us),
+.rst_n(rst_n)
+);
+
+ast_top ast7_top(
+.ast(ast_ctrl[6]),
+.ad_data(ad7_data),
+.ad_vld(ad7_vld),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(ast7_fx_q),
+//clk rst
+.dev_id(6'h36),
+.clk_sys(clk_sys),
+.pluse_us(pluse_us),
+.rst_n(rst_n)
+);
+
+ast_top ast8_top(
+.ast(ast_ctrl[7]),
+.ad_data(ad8_data),
+.ad_vld(ad8_vld),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(ast8_fx_q),
+//clk rst
+.dev_id(6'h37),
+.clk_sys(clk_sys),
+.pluse_us(pluse_us),
+.rst_n(rst_n)
+);
+
 
 
 //---------- app_top ---------

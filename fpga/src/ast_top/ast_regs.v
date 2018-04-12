@@ -47,6 +47,12 @@ wire now_wr = fx_wr & dev_wsel;
 wire now_rd = fx_rd & dev_rsel;
 
 
+//--------- cmd ------------
+wire [7:0] cmd_ast;
+assign cmd_ast = (dev_wsel & now_wr & (fx_waddr[15:0] == 16'h30)) ? 
+									fx_data : 8'h0;
+									
+
 //--------- register --------
 reg [7:0]	cfg_pol;
 reg [7:0]	cfg_width;
@@ -77,6 +83,8 @@ always @ (posedge clk_sys or negedge rst_n)	begin
 	end
 	else if(now_wr) begin
 		case(fx_waddr[15:0]) 
+			16'h20 : cfg_pol  <= fx_data;
+			16'h21 : cfg_width<= fx_data;
 			16'h80 : cfg_dbg0 <= fx_data;
 			16'h81 : cfg_dbg1 <= fx_data;
 			16'h82 : cfg_dbg2 <= fx_data;
@@ -102,6 +110,8 @@ always @(posedge clk_sys or negedge rst_n)	begin
 		case(fx_raddr[15:0])
 			16'h0  : q0 <= dev_id;
 			16'h10 : q0 <= stu_sensor;
+			16'h20 : q0 <= cfg_pol;
+			16'h21 : q0 <= cfg_width;
 			16'h80 : q0 <= cfg_dbg0;
 			16'h81 : q0 <= cfg_dbg1;
 			16'h82 : q0 <= cfg_dbg2;

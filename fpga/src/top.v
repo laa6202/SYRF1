@@ -138,13 +138,13 @@ wire [7:0]	p6_fx_q;
 wire [7:0]	p7_fx_q;
 wire [7:0]	p8_fx_q;
 wire [7:0] 	ast1_fx_q;
-wire [7:0] 	ast2_fx_q;
-wire [7:0] 	ast3_fx_q;
-wire [7:0] 	ast4_fx_q;
-wire [7:0] 	ast5_fx_q;
-wire [7:0] 	ast6_fx_q;
-wire [7:0] 	ast7_fx_q;
-wire [7:0] 	ast8_fx_q;
+wire [7:0] 	ast2_fx_q = 8'h0;
+wire [7:0] 	ast3_fx_q = 8'h0;
+wire [7:0] 	ast4_fx_q = 8'h0;
+wire [7:0] 	ast5_fx_q = 8'h0;
+wire [7:0] 	ast6_fx_q = 8'h0;
+wire [7:0] 	ast7_fx_q = 8'h0;
+wire [7:0] 	ast8_fx_q = 8'h0;
 //fx bus master
 wire 				ufx_wr;
 wire [7:0]	ufx_data;
@@ -185,6 +185,14 @@ fx_bus u_fx_bus(
 .p6_fx_q(p6_fx_q),
 .p7_fx_q(p7_fx_q),
 .p8_fx_q(p8_fx_q),
+.ast1_fx_q(ast1_fx_q),
+.ast2_fx_q(ast2_fx_q),
+.ast3_fx_q(ast3_fx_q),
+.ast4_fx_q(ast4_fx_q),
+.ast5_fx_q(ast5_fx_q),
+.ast6_fx_q(ast6_fx_q),
+.ast7_fx_q(ast7_fx_q),
+.ast8_fx_q(ast8_fx_q),
 //fx bus for uart maseter
 .ufx_waddr(ufx_waddr),
 .ufx_wr(ufx_wr),

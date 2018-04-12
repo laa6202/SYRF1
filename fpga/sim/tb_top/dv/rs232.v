@@ -33,13 +33,34 @@ end
 endtask
 
 
+wire [7:0] cmd;
+wire [7:0] addr_h;
+wire [7:0] addr_l;
+wire [7:0] data;
+invert8b u_invc(
+.din(8'hb0),
+.dout(cmd)
+);
+invert8b u_inv_addr_h(
+.din(8'h00),
+.dout(addr_h)
+);
+invert8b u_inv_addr_l(
+.din(8'h30),
+.dout(addr_l)
+);
+invert8b u_inv_data(
+.din(8'd1),
+.dout(data)
+);
+
 
 initial begin
 				uart_tx <= 1'b1;
-#700		send_utx(8'h20);
-#200		send_utx(8'h00);
-#200		send_utx(8'h85);
-#200		send_utx(8'haa);
+#700		send_utx(cmd);
+#200		send_utx(addr_h);
+#200		send_utx(addr_l);
+#200		send_utx(data);
 
 end
 

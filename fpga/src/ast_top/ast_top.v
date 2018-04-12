@@ -14,6 +14,7 @@ fx_q,
 //clk rst
 dev_id,
 clk_sys,
+pluse_us,
 rst_n
 );
 output ast;
@@ -29,6 +30,7 @@ output  [7:0]	fx_q;
 //clk rst
 input [5:0] dev_id;
 input clk_sys;
+input pluse_us;
 input rst_n;
 //------------------------------------
 //------------------------------------
@@ -60,5 +62,17 @@ ast_regs u_ast_regs(
 );
 
 
+//---------- ast_send ---------
+ast_send u_ast_send(
+.ast(ast),
+//configuration
+.cfg_pol(cfg_pol),
+.cfg_width(cfg_width),
+.cmd_ast(cmd_ast),
+//clk rst
+.clk_sys(clk_sys),
+.pluse_us(pluse_us),
+.rst_n(rst_n)
+);
 
 endmodule

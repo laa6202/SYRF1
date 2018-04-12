@@ -3,10 +3,10 @@ C:\Tools\modeltech64_10.2c\win64\vlog.exe -reportprogress 300 -f flist
 -- Skipping module clk_gen
 -- Skipping module rst_gen
 -- Skipping module ad_7226
--- Compiling module rs232
+-- Skipping module rs232
 -- Skipping module invert8b
 -- Skipping module tb
--- Skipping module top
+-- Compiling module top
 -- Skipping module fx_bus
 -- Skipping module clk_rst_top
 -- Skipping module pluse_us_gen
@@ -34,8 +34,9 @@ C:\Tools\modeltech64_10.2c\win64\vlog.exe -reportprogress 300 -f flist
 -- Skipping module app_top
 -- Skipping module app_reg
 -- Skipping module fracture
--- Skipping module ast_top
+-- Compiling module ast_top
 -- Skipping module ast_regs
+-- Compiling module ast_send
 
 Top level modules:
 	tb

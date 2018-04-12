@@ -793,6 +793,7 @@ ast_top ast1_top(
 //clk rst
 .dev_id(6'h30),
 .clk_sys(clk_sys),
+.pluse_us(pluse_us),
 .rst_n(rst_n)
 );
 

@@ -75,4 +75,20 @@ ast_send u_ast_send(
 .rst_n(rst_n)
 );
 
+
+
+//---------stu_check ---------
+stu_check u_stu_check(
+.ast(ast),
+.ad_data(ad_data),
+.ad_vld(ad_vld),
+//configuration
+.stu_sensor(stu_sensor),
+//clk rst
+.clk_sys(clk_sys),
+.pluse_us(pluse_us),
+.rst_n(rst_n)
+);
+
+
 endmodule

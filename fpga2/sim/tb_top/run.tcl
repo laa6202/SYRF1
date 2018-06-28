@@ -1,1 +1,0 @@
-vsim -voptargs=+acc -t 1ns -do wave.do work.tb

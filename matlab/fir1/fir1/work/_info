@@ -1,0 +1,76 @@
+m255
+K4
+z2
+13
+cModel Technology
+Z0 dD:/work/logic/SYRF1/matlab/fir1/fir1
+!s112 0.1
+!i10d 8192
+!i10e 25
+!i10f 100
+T_opt
+VAOZU5hFfGF4iAZRcF>T7Y1
+Z1 04 9 4 work filter_tb fast 0
+=1-b870f44c589e-5b34e926-bd-9dc
+o-quiet -auto_acc_if_foreign -work work +acc
+n@_opt
+Z2 OL;O;10.2c;57
+Z3 dD:/work/logic/SYRF1/matlab/fir1/fir1
+!s110 1530194214
+T_opt1
+V6FFd_a7<IWK_R1UNBBE[23
+04 6 4 work filter fast 0
+=1-b870f44c589e-5b34e998-6c-23c
+Z4 o-quiet -auto_acc_if_foreign -work work
+n@_opt1
+R2
+R3
+!s110 1530194328
+T_opt2
+!s110 1530195046
+VT^MznWM]>Jco<aTVd6XOQ3
+R1
+=1-b870f44c589e-5b34ec65-3be-8bc
+R4
+n@_opt2
+R2
+vfilter
+ICTUz=G[@]<JU=_n>J4hO?3
+Z5 V`JN@9S9cnhjKRR_L]QIcM3
+R3
+w1530192499
+8filter.v
+Ffilter.v
+L0 56
+Z6 OL;L;10.2c;57
+r1
+31
+Z7 !s108 1530194190.024000
+Z8 !s107 filter_tb.v|filter.v|
+Z9 !s90 -reportprogress|300|filter.v|filter_tb.v|
+Z10 o-L mtiAvm -L mtiOvm -L mtiUvm -L mtiUPF
+!s110 1530194190
+!i10b 1
+!s100 Dm7WMF_8eVb_CMNDU?ZMA3
+!s85 0
+!i111 0
+vfilter_tb
+I:>LJT[o_0XJ`b5<0[2_^C2
+R5
+R3
+w1530192501
+8filter_tb.v
+Ffilter_tb.v
+L0 55
+R6
+r1
+31
+R7
+R8
+R9
+R10
+!s110 1530194193
+!i10b 1
+!s100 15A>efg;BCM6hDRAJXfoA0
+!s85 0
+!i111 0

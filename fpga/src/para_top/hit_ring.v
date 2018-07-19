@@ -9,6 +9,7 @@ cfg_th,
 stu_now_hit,
 stu_now_lock,
 stu_ring,
+force_end,
 //para 
 ph_ring,
 ph_vld,
@@ -25,6 +26,7 @@ input [15:0]	cfg_th;
 input stu_now_hit;
 input stu_now_lock;
 output [15:0] stu_ring;
+input	force_end;
 //para 
 output [15:0]	ph_ring;
 output 				ph_vld;
@@ -83,7 +85,7 @@ wire [15:0]	ph_ring;
 reg 				ph_vld;
 assign ph_ring = stu_ring;
 always @ (posedge clk_sys)
-	ph_vld <= now_hit_falling;
+	ph_vld <= (~force_end) & now_hit_falling;
 
 endmodule
 

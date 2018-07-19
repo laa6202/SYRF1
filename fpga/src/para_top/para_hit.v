@@ -39,6 +39,8 @@ input rst_n;
 //--------------------------------
 //--------------------------------
 
+
+wire force_end;
 hit_main u_hit_main(
 //data path
 .sm_data(sm_data),
@@ -50,6 +52,7 @@ hit_main u_hit_main(
 .stu_now_hit(stu_now_hit),
 .stu_now_lock(stu_now_lock),
 .stu_hit_id(stu_hit_id),
+.force_end(force_end),
 //clk rst
 .clk_sys(clk_sys),
 .rst_n(rst_n)
@@ -65,6 +68,7 @@ hit_ring u_hit_ring(
 .stu_now_hit(stu_now_hit),
 .stu_now_lock(stu_now_lock),
 .stu_ring(stu_ring),
+.force_end(force_end),
 //para
 .ph_ring(ph_ring),
 .ph_vld(ph_vld),

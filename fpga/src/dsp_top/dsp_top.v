@@ -1,5 +1,7 @@
 //dsp_top.v
 
+`define NO_FIR
+
 module dsp_top(
 ad_data,
 ad_vld,
@@ -57,10 +59,11 @@ dsp_regs u_dsp_regs(
 //no logic
 wire [15:0] sm_data;
 wire	sm_vld;
-//assign sm_data = ad_data;
-//assign sm_vld = ad_vld;
+`ifdef NO_FIR
+assign sm_data = ad_data;
+assign sm_vld = ad_vld;
 
-
+`else
 
 fir2 u_fir1 (
 		.clk(clk_sys),              //                     clk.clk
@@ -72,5 +75,7 @@ fir2 u_fir1 (
 		.ast_source_valid(sm_vld), //                        .valid
 		.ast_source_error()  //                        .error
 	);
+	
+`endif
 
 endmodule

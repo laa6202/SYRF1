@@ -59,6 +59,8 @@ reg [15:0] cnt_ring;
 always @ (posedge clk_sys or negedge rst_n)	begin
 	if(~rst_n)
 		cnt_ring <= 16'h0;
+	else if(force_end)
+		cnt_ring <= 16'h0;
 	else if(now_hit_rasing)
 		cnt_ring <= 16'h1;
 	else if(now_hit)

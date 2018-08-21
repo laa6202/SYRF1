@@ -8,6 +8,8 @@ sm_vld,
 cfg_th,
 cfg_hdt,
 cfg_ldt,
+cfg_swt,
+cfg_hwt,
 stu_now_hit,
 stu_now_lock,
 stu_hit_id,
@@ -26,6 +28,8 @@ input					sm_vld;
 input [15:0]	cfg_th;
 input [31:0]	cfg_hdt;
 input [31:0]	cfg_ldt;
+input [15:0]	cfg_swt;	
+input [15:0]	cfg_hwt;	
 output stu_now_hit;
 output stu_now_lock;
 output [15:0] stu_hit_id;
@@ -49,6 +53,8 @@ hit_main u_hit_main(
 .cfg_th(cfg_th),
 .cfg_hdt(cfg_hdt),
 .cfg_ldt(cfg_ldt),
+.cfg_swt(cfg_swt),
+.cfg_hwt(cfg_hwt),
 .stu_now_hit(stu_now_hit),
 .stu_now_lock(stu_now_lock),
 .stu_hit_id(stu_hit_id),

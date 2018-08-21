@@ -43,6 +43,8 @@ input rst_n;
 wire [15:0]	cfg_th;
 wire [31:0]	cfg_hdt;
 wire [31:0]	cfg_ldt;
+wire [15:0] cfg_swt;
+wire [15:0] cfg_hwt;
 wire [15:0]	stu_hit_id;
 wire [15:0] stu_ring;
 
@@ -62,6 +64,8 @@ para_regs u_para_regs(
 .cfg_th(cfg_th),
 .cfg_hdt(cfg_hdt),
 .cfg_ldt(cfg_ldt),
+.cfg_swt(cfg_swt),
+.cfg_hwt(cfg_hwt),
 .stu_hit_id(stu_hit_id),
 .stu_ring(stu_ring),
 //clk rst
@@ -94,6 +98,8 @@ para_hit u_para_hit(
 .cfg_th(cfg_th),
 .cfg_hdt(cfg_hdt),
 .cfg_ldt(cfg_ldt),
+.cfg_swt(cfg_swt),
+.cfg_hwt(cfg_hwt),
 .stu_now_hit(),
 .stu_now_lock(),
 .stu_hit_id(stu_hit_id),

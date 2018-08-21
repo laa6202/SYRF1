@@ -13,6 +13,8 @@ sta_para_ave,
 cfg_th,
 cfg_hdt,
 cfg_ldt,
+cfg_swt,
+cfg_hwt,
 stu_hit_id,
 stu_ring,
 //clk rst
@@ -34,6 +36,8 @@ input [15:0] sta_para_ave;
 output [15:0] cfg_th;
 output [31:0] cfg_hdt;
 output [31:0] cfg_ldt;
+output [15:0]	cfg_swt;
+output [15:0]	cfg_hwt;
 input [15:0] stu_hit_id;
 input [15:0] stu_ring;
 //clk rst
@@ -55,6 +59,8 @@ wire now_rd = fx_rd & dev_rsel;
 reg [15:0] 	cfg_th;
 reg [31:0]	cfg_hdt;
 reg [31:0]	cfg_ldt;
+reg [15:0]	cfg_swt;
+reg [15:0]	cfg_hwt;
 reg [7:0] cfg_dbg0;
 reg [7:0] cfg_dbg1;
 reg [7:0] cfg_dbg2;
@@ -72,6 +78,8 @@ always @ (posedge clk_sys or negedge rst_n)	begin
 		cfg_th	 <= 16'h8000;
 		cfg_hdt  <= 32'd1_000_00;
 		cfg_ldt  <= 32'd200_000_00;
+		cfg_swt  <= 16'h4;
+		cfg_hwt  <= 16'h10;
 		cfg_dbg0 <= 8'h80;
 		cfg_dbg1 <= 8'h81;
 		cfg_dbg2 <= 8'h82;
@@ -93,6 +101,10 @@ always @ (posedge clk_sys or negedge rst_n)	begin
 			16'h29 : cfg_ldt[15:8]  <= fx_data;
 			16'h2a : cfg_ldt[23:16] <= fx_data;
 			16'h2b : cfg_ldt[31:24] <= fx_data;
+			16'h2c : cfg_swt[7:0]   <= fx_data;
+			16'h2d : cfg_swt[15:8]  <= fx_data;
+			16'h2e : cfg_hwt[7:0]   <= fx_data;
+			16'h2f : cfg_hwt[15:8]   <= fx_data;
 			16'h80 : cfg_dbg0 <= fx_data;
 			16'h81 : cfg_dbg1 <= fx_data;
 			16'h82 : cfg_dbg2 <= fx_data;
@@ -127,6 +139,10 @@ always @(posedge clk_sys or negedge rst_n)	begin
 			16'h29 : q0 <= cfg_ldt[15:8];	
 			16'h2a : q0 <= cfg_ldt[23:16];
 			16'h2b : q0 <= cfg_ldt[31:24];	
+			16'h2c : q0 <= cfg_swt[7:0];
+			16'h2d : q0 <= cfg_swt[15:8];
+			16'h2e : q0 <= cfg_hwt[7:0];
+			16'h2f : q0 <= cfg_hwt[15:8];
 			16'h30 : q0 <= stu_hit_id[7:0];
 			16'h31 : q0 <= stu_hit_id[15:8];
 			16'h32 : q0 <= stu_ring[7:0];

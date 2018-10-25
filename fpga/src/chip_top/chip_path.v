@@ -1,5 +1,7 @@
 //chip_path.v
 
+`define LEN_CHIP 20'd4000
+
 module chip_path(
 //data path
 sm1_data,
@@ -42,6 +44,11 @@ input clk_sys;
 input rst_n;
 //--------------------------------------
 //--------------------------------------
+`ifdef SIM
+wire [19:0] cfg_len = 20'd10;
+`else
+wire [19:0] cfg_len = `LEN_CHIP;
+`endif
 
 wire [15:0]	d0_data;
 wire d0_vld;
@@ -54,6 +61,23 @@ assign d0_data = 	(cfg_path_sel == 7'h0) ? sm1_data :
 									(cfg_path_sel == 7'h6) ? sm7_data :
 									(cfg_path_sel == 7'h7) ? sm8_data : sm1_data;
 assign d0_vld = sm_vld;
+
+
+reg [19:0] cnt_th;
+always @ (posedge clk_sys or negedge rst_n)	begin
+	if(~rst_n)
+		cnt_th <= 20'h0;
+	else if((cnt_th != 20'h0) & d0_vld)
+		cnt_th <= cnt_th - 20'h1;
+	else if((d0_data >= cfg_chip_th ) & d0_vld)
+		cnt_th <= cfg_len - 20'h1;
+	else ;
+end
+
+wire [15:0]	d1_data;
+wire				d1_vld;
+assign d1_data = (cnt_th != 20'h0) ? d0_data : 16'h0;
+assign d1_vld = (cnt_th != 20'h0) ? d0_vld : 16'h0;
 
 
 endmodule

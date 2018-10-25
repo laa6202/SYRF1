@@ -940,7 +940,7 @@ chip_top u_chip_top(
 .sm6_data(sm6_data),
 .sm7_data(sm7_data),
 .sm8_data(sm8_data),
-.sm_vld(sm_vld),
+.sm_vld(sm1_vld),
 //data debug
 .uart_data(uart_data),
 //fx bus

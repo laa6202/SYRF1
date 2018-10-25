@@ -1,15 +1,18 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate /tb/syrf1_top/ast1_top/u_ast_send/ast
-add wave -noupdate /tb/syrf1_top/ast1_top/u_ast_send/cfg_pol
-add wave -noupdate /tb/syrf1_top/ast1_top/u_ast_send/cfg_width
-add wave -noupdate /tb/syrf1_top/ast1_top/u_ast_send/cmd_ast
-add wave -noupdate /tb/syrf1_top/ast1_top/u_ast_send/fire_ast
-add wave -noupdate /tb/syrf1_top/ast1_top/u_ast_send/st_ast
-add wave -noupdate /tb/syrf1_top/ast1_top/u_ast_send/finish_send
-add wave -noupdate /tb/syrf1_top/ast1_top/u_ast_send/cnt_send_us
-add wave -noupdate /tb/syrf1_top/ast1_top/u_ast_send/pluse_us
-add wave -noupdate /tb/syrf1_top/ast1_top/u_ast_send/pluse_us_here
+add wave -noupdate /tb/syrf1_top/u_chip_top/sm1_data
+add wave -noupdate /tb/syrf1_top/u_chip_top/sm2_data
+add wave -noupdate /tb/syrf1_top/u_chip_top/sm3_data
+add wave -noupdate /tb/syrf1_top/u_chip_top/sm4_data
+add wave -noupdate /tb/syrf1_top/u_chip_top/sm5_data
+add wave -noupdate /tb/syrf1_top/u_chip_top/sm6_data
+add wave -noupdate /tb/syrf1_top/u_chip_top/sm7_data
+add wave -noupdate /tb/syrf1_top/u_chip_top/sm8_data
+add wave -noupdate /tb/syrf1_top/u_chip_top/sm_vld
+add wave -noupdate /tb/syrf1_top/u_chip_top/u_chip_path/d1_data
+add wave -noupdate /tb/syrf1_top/u_chip_top/u_chip_path/d1_vld
+add wave -noupdate /tb/syrf1_top/u_chip_top/u_chip_path/cfg_path_sel
+add wave -noupdate /tb/syrf1_top/u_chip_top/u_chip_path/cfg_chip_th
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {4509 ns} 0}
 quietly wave cursor active 1

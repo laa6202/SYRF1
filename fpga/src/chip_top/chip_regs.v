@@ -42,6 +42,7 @@ wire now_rd = fx_rd & dev_rsel;
 
 //--------- register --------
 reg [7:0]	cfg_path_sel;
+reg [15:0] cfg_chip_th;
 reg [7:0] cfg_dbg0;
 reg [7:0] cfg_dbg1;
 reg [7:0] cfg_dbg2;
@@ -57,6 +58,7 @@ reg [7:0] cfg_dbg7;
 always @ (posedge clk_sys or negedge rst_n)	begin
 	if(~rst_n)	begin
 		cfg_path_sel <= 8'h0;
+		cfg_chip_th <= 16'h8000;
 		cfg_dbg0 <= 8'h80;
 		cfg_dbg1 <= 8'h81;
 		cfg_dbg2 <= 8'h82;
@@ -69,6 +71,8 @@ always @ (posedge clk_sys or negedge rst_n)	begin
 	else if(now_wr) begin
 		case(fx_waddr[15:0])
 			16'h20 : cfg_path_sel <= fx_data;
+			16'h22 : cfg_chip_th[7:0] <= fx_data;
+			16'h23 : cfg_chip_th[15:8] <= fx_data;
 			16'h80 : cfg_dbg0 <= fx_data;
 			16'h81 : cfg_dbg1 <= fx_data;
 			16'h82 : cfg_dbg2 <= fx_data;
@@ -94,6 +98,8 @@ always @(posedge clk_sys or negedge rst_n)	begin
 		case(fx_raddr[15:0])
 			16'h0  : q0 <= dev_id;
 			16'h20 : q0 <= cfg_path_sel;
+			16'h22 : q0 <= cfg_chip_th[7:0];
+			16'h23 : q0 <= cfg_chip_th[15:8];
 			16'h80 : q0 <= cfg_dbg0;
 			16'h81 : q0 <= cfg_dbg1;
 			16'h82 : q0 <= cfg_dbg2;

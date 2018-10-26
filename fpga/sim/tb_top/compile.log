@@ -40,7 +40,12 @@ C:\Tools\modeltech64_10.2c\win64\vlog.exe -reportprogress 300 -f flist
 -- Skipping module stu_check
 -- Skipping module chip_top
 -- Skipping module chip_regs
--- Compiling module chip_path
+-- Skipping module chip_path
+-- Compiling module chip_main
+-- Skipping module phy_utx2
+-- Skipping module fifo16x4096
+-- Skipping module scfifo
+-- Skipping module ALTERA_DEVICE_FAMILIES
 
 Top level modules:
 	tb

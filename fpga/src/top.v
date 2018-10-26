@@ -953,6 +953,7 @@ chip_top u_chip_top(
 //clk rst
 .dev_id(6'h04),
 .clk_sys(clk_sys),
+.pluse_us(pluse_us),
 .rst_n(rst_n)
 );
 

@@ -53,5 +53,10 @@ tb.v
 ../../src/chip_top/chip_top.v
 ../../src/chip_top/chip_regs.v
 ../../src/chip_top/chip_path.v
+../../src/chip_top/chip_main.v
+../../src/chip_top/phy_utx2.v
 
+../../ip/fifo/fifo16x4096.v
+../../ip/fifo/scfifo.v
+../../ip/fifo/fun.v
 

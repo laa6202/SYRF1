@@ -24,6 +24,7 @@ fx_q,
 //clk rst
 dev_id,
 clk_sys,
+pluse_us,
 rst_n
 );
 //data path
@@ -48,6 +49,7 @@ output  [7:0]	fx_q;
 //clk rst
 input [5:0] dev_id;
 input clk_sys;
+input pluse_us;
 input rst_n;
 //--------------------------------------
 //--------------------------------------
@@ -95,5 +97,35 @@ chip_path u_chip_path(
 .clk_sys(clk_sys),
 .rst_n(rst_n)
 );
+
+
+wire [15:0]	tx_data;
+wire tx_vld;
+wire	tx_done;
+chip_main u_chip_main(
+//uart out
+.tx_data(tx_data),
+.tx_vld(tx_vld),
+.tx_done(tx_done),
+//data in
+.d1_data(d1_data),
+.d1_vld(d1_vld),
+//clk rst
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+
+
+phy_utx2 u_uart_chip(
+.uart_tx(uart_data),
+.tx_data(tx_data),
+.tx_vld(tx_vld),
+.tx_done(tx_done),
+//clk rst
+.clk_sys(clk_sys),
+.pluse_us(pluse_us),
+.rst_n(rst_n)
+);
+
 
 endmodule

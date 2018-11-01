@@ -332,6 +332,7 @@ set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[24] -
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[26] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[27] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[31] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_global_assignment -name VERILOG_FILE ../src/chip_top/phy_utx2.v
 set_global_assignment -name VERILOG_FILE ../src/chip_top/chip_top.v
 set_global_assignment -name VERILOG_FILE ../src/chip_top/chip_regs.v
 set_global_assignment -name VERILOG_FILE ../src/chip_top/chip_path.v
@@ -371,8 +372,8 @@ set_global_assignment -name VERILOG_FILE ../src/clk_rst_top/pluse_us_gen.v
 set_global_assignment -name VERILOG_FILE ../src/clk_rst_top/clk_rst_top.v
 set_global_assignment -name VERILOG_FILE ../src/top.v
 set_global_assignment -name SIGNALTAP_FILE stp1.stp
-set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name QIP_FILE ../ip/fifo/fifo8x8192.qip
 set_global_assignment -name QIP_FILE ../ip/ram/ram8x8192.qip
 set_global_assignment -name QIP_FILE ../ip/fifo/fifo16x4096.qip
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp

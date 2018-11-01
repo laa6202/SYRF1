@@ -16,6 +16,7 @@ sm_vld,
 //data output 
 d1_data,
 d1_vld,
+buf_rdy,
 //cfg
 cfg_path_sel,
 cfg_chip_th,
@@ -36,6 +37,7 @@ input				sm_vld;
 //data path output
 output [15:0]	d1_data;
 output				d1_vld;
+input					buf_rdy;
 //cfg
 input [7:0]		cfg_path_sel;
 input [15:0]	cfg_chip_th;
@@ -67,9 +69,9 @@ reg [19:0] cnt_th;
 always @ (posedge clk_sys or negedge rst_n)	begin
 	if(~rst_n)
 		cnt_th <= 20'h0;
-	else if((cnt_th != 20'h0) & d0_vld)
+	else if((cnt_th != 20'h0) & d0_vld & buf_rdy)
 		cnt_th <= cnt_th - 20'h1;
-	else if((d0_data >= cfg_chip_th ) & d0_vld)
+	else if((d0_data >= cfg_chip_th ) & d0_vld & buf_rdy)
 		cnt_th <= cfg_len - 20'h1;
 	else ;
 end

@@ -76,6 +76,7 @@ chip_regs u_chip_regs(
 
 wire [15:0] d1_data;
 wire 				d1_vld;
+wire				buf_rdy;
 chip_path u_chip_path(
 //data path
 .sm1_data(sm1_data),
@@ -90,6 +91,7 @@ chip_path u_chip_path(
 //data output 
 .d1_data(d1_data),
 .d1_vld(d1_vld),
+.buf_rdy(buf_rdy),
 //cfg
 .cfg_path_sel(cfg_path_sel),
 .cfg_chip_th(cfg_chip_th),
@@ -110,6 +112,7 @@ chip_main u_chip_main(
 //data in
 .d1_data(d1_data),
 .d1_vld(d1_vld),
+.buf_rdy(buf_rdy),
 //clk rst
 .clk_sys(clk_sys),
 .rst_n(rst_n)
@@ -118,7 +121,7 @@ chip_main u_chip_main(
 
 phy_utx2 u_uart_chip(
 .uart_tx(uart_data),
-.tx_data(tx_data),
+.tx_data(tx_data),		
 .tx_vld(tx_vld),
 .tx_done(tx_done),
 //clk rst

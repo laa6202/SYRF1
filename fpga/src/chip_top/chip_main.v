@@ -10,6 +10,7 @@ tx_done,
 //data in
 d1_data,
 d1_vld,
+buf_rdy,
 //clk rst
 clk_sys,
 rst_n
@@ -21,6 +22,7 @@ input					tx_done;
 //data in
 input [15:0]	d1_data;
 input		d1_vld;
+output	buf_rdy;
 //clk rst
 input clk_sys;
 input rst_n;
@@ -57,6 +59,7 @@ always @(posedge clk_sys or negedge rst_n)	begin
 		endcase
 	end
 end
+wire buf_rdy = (st_chip == S_IDLE) | (st_chip == S_BUF);
 
 
 //--------- FSM switch ------------
@@ -73,16 +76,16 @@ always @ (posedge clk_sys or negedge rst_n)	begin
 		cnt_buf <= 20'h0;
 	else ;
 end
-assign done_buf = (cnt_buf == (cfg_len - 20'h1)) ? 1'b1 : 1'b0;
+assign done_buf = (st_chip == S_BUF) & (cnt_buf == (cfg_len - 20'h1)) ? 1'b1 : 1'b0;
 
 
 reg [19:0] cnt_push;
-wire word_push;
+reg tx_vld;
 always @ (posedge clk_sys or negedge rst_n)	begin
 	if(~rst_n)
 		cnt_push <= 20'h0;
 	else if(st_chip == S_PUSH)
-		cnt_push <= word_push ? (cnt_push + 20'h1) : cnt_push;
+		cnt_push <= tx_vld ? (cnt_push + 20'h1) : cnt_push;
 	else if(st_chip != S_PUSH)
 		cnt_push <= 20'h0;
 	else ;
@@ -93,8 +96,8 @@ assign done_push = (cnt_push == (cfg_len - 20'h1)) ? 1'b1 : 1'b0;
 
 //---------- buf path ------------
 
-wire wrreq = d1_vld;
-wire [15:0] wdata = d1_data;
+wire wrreq = buf_vld;
+wire [15:0] wdata = buf_vld ? d1_data : 16'h0;
 
 
 wire rdreq;						
@@ -111,11 +114,15 @@ fifo16x4096 u_fifo16x4096 (
 
 
 //------------ data push ----------
-reg tx_vld;
+
 always @ (posedge clk_sys or negedge rst_n)	begin
 	if(~rst_n)
 		tx_vld <= 1'b0;
+	else if(done_buf)
+		tx_vld <= 1'b1;
 	else if(done_push)
+		tx_vld <= 1'b0;
+	else if(tx_done)
 		tx_vld <= 1'b1;
 	else 
 		tx_vld <= 1'b0;

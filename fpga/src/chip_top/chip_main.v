@@ -111,6 +111,7 @@ fifo16x4096 u_fifo16x4096 (
 .q(tx_data),
 .usedw()
 );
+assign rdreq = tx_vld;
 
 
 //------------ data push ----------
@@ -122,7 +123,7 @@ always @ (posedge clk_sys or negedge rst_n)	begin
 		tx_vld <= 1'b1;
 	else if(done_push)
 		tx_vld <= 1'b0;
-	else if(tx_done)
+	else if((tx_done)&(st_chip == S_PUSH))
 		tx_vld <= 1'b1;
 	else 
 		tx_vld <= 1'b0;

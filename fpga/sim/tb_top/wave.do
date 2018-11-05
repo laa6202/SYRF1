@@ -14,8 +14,9 @@ add wave -noupdate /tb/syrf1_top/u_chip_top/u_chip_main/cnt_buf
 add wave -noupdate /tb/syrf1_top/u_chip_top/u_chip_main/cnt_push
 add wave -noupdate /tb/syrf1_top/u_chip_top/u_chip_main/wrreq
 add wave -noupdate /tb/syrf1_top/u_chip_top/u_chip_main/wdata
+add wave -noupdate /tb/syrf1_top/u_chip_top/u_chip_main/rdreq
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {10099 ns} 0}
+WaveRestoreCursors {{Cursor 1} {10681 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 321
 configure wave -valuecolwidth 100
@@ -31,4 +32,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {10001 ns} {10233 ns}
+WaveRestoreZoom {0 ns} {42 us}

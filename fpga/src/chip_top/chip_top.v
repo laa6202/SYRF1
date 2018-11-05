@@ -119,7 +119,7 @@ chip_main u_chip_main(
 );
 
 
-phy_utx2 u_uart_chip(
+phy_utx3 u_uart_chip(
 .uart_tx(uart_data),
 .tx_data(tx_data),		
 .tx_vld(tx_vld),

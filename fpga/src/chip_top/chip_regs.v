@@ -58,7 +58,7 @@ reg [7:0] cfg_dbg7;
 always @ (posedge clk_sys or negedge rst_n)	begin
 	if(~rst_n)	begin
 		cfg_path_sel <= 8'h0;
-		cfg_chip_th <= 16'h8000;
+		cfg_chip_th <= 16'hC000;
 		cfg_dbg0 <= 8'h80;
 		cfg_dbg1 <= 8'h81;
 		cfg_dbg2 <= 8'h82;

@@ -32,7 +32,8 @@ ch8_sdata,
 uart_tx,
 uart_rx,
 //data debug
-uart_data,
+uart_data1,
+uart_data2,
 //ast led boot num
 ast_ctrl,
 led,
@@ -75,7 +76,8 @@ input  ch8_sdata;
 output uart_tx;
 input  uart_rx;
 //data debug
-output uart_data;
+output uart_data1;
+output uart_data2;
 //ast led boot num
 output [7:0] ast_ctrl;
 output [2:0]	led;
@@ -117,7 +119,8 @@ wire [21:0]	fx_raddr;
 wire 				fx_rd;
 wire  [7:0]	con_fx_q;
 wire  [7:0] app_fx_q;
-wire  [7:0] chip_fx_q;
+wire  [7:0] chip1_fx_q;
+wire  [7:0] chip2_fx_q;
 wire  [7:0]	ad1_fx_q;
 wire  [7:0]	ad2_fx_q;
 wire  [7:0]	ad3_fx_q;
@@ -166,7 +169,8 @@ fx_bus u_fx_bus(
 .fx_raddr(fx_raddr),
 .con_fx_q(con_fx_q),
 .app_fx_q(app_fx_q),
-.chip_fx_q(chip_fx_q),
+.chip1_fx_q(chip1_fx_q),
+.chip2_fx_q(chip2_fx_q),
 .ad1_fx_q(ad1_fx_q),
 .ad2_fx_q(ad2_fx_q),
 .ad3_fx_q(ad3_fx_q),
@@ -930,7 +934,7 @@ ast_top ast8_top(
 );
 
 
-chip_top u_chip_top(
+chip_top u_chip1_top(
 //data path
 .sm1_data(sm1_data),
 .sm2_data(sm2_data),
@@ -942,14 +946,14 @@ chip_top u_chip_top(
 .sm8_data(sm8_data),
 .sm_vld(sm1_vld),
 //data debug
-.uart_data(uart_data),
+.uart_data(uart_data1),
 //fx bus
 .fx_waddr(fx_waddr),
 .fx_wr(fx_wr),
 .fx_data(fx_data),
 .fx_rd(fx_rd),
 .fx_raddr(fx_raddr),
-.fx_q(chip_fx_q),
+.fx_q(chip1_fx_q),
 //clk rst
 .dev_id(6'h04),
 .clk_sys(clk_sys),
@@ -957,7 +961,32 @@ chip_top u_chip_top(
 .rst_n(rst_n)
 );
 
-
+chip_top u_chip2_top(
+//data path
+.sm1_data(sm1_data),
+.sm2_data(sm2_data),
+.sm3_data(sm3_data),
+.sm4_data(sm4_data),
+.sm5_data(sm5_data),
+.sm6_data(sm6_data),
+.sm7_data(sm7_data),
+.sm8_data(sm8_data),
+.sm_vld(sm1_vld),
+//data debug
+.uart_data(uart_data2),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(chip2_fx_q),
+//clk rst
+.dev_id(6'h05),
+.clk_sys(clk_sys),
+.pluse_us(pluse_us),
+.rst_n(rst_n)
+);
 
 //---------- app_top ---------
 wire irq_n;

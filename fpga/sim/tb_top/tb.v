@@ -73,7 +73,8 @@ top syrf1_top(
 .uart_tx(uart_miso),
 .uart_rx(uart_mosi),
 //data debug
-.uart_data(),
+.uart_data1(),
+.uart_data2(),
 //clk rst 
 .mclk0(mclk0),
 .mclk1(mclk1),

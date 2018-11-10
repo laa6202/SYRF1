@@ -40,6 +40,9 @@ wire now_wr = fx_wr & dev_wsel;
 wire now_rd = fx_rd & dev_rsel;
 
 
+wire [7:0] path_sel = {2'h0,dev_id} - 8'h4;
+
+
 //--------- register --------
 reg [7:0]	cfg_path_sel;
 reg [15:0] cfg_chip_th;
@@ -57,8 +60,8 @@ reg [7:0] cfg_dbg7;
 //--------- write register ----------
 always @ (posedge clk_sys or negedge rst_n)	begin
 	if(~rst_n)	begin
-		cfg_path_sel <= 8'h0;
-		cfg_chip_th <= 16'hC000;
+		cfg_path_sel <= path_sel;
+		cfg_chip_th <= 16'hC000;		//此处为默认波形门限
 		cfg_dbg0 <= 8'h80;
 		cfg_dbg1 <= 8'h81;
 		cfg_dbg2 <= 8'h82;

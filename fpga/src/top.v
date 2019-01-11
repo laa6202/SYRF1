@@ -31,9 +31,6 @@ ch8_sdata,
 //uart slave
 uart_tx,
 uart_rx,
-//data debug
-uart_data1,
-uart_data2,
 //ast led boot num
 ast_ctrl,
 led,
@@ -75,9 +72,6 @@ input  ch8_sdata;
 //uart slave
 output uart_tx;
 input  uart_rx;
-//data debug
-output uart_data1;
-output uart_data2;
 //ast led boot num
 output [7:0] ast_ctrl;
 output [2:0]	led;
@@ -946,7 +940,7 @@ chip_top u_chip1_top(
 .sm8_data(sm8_data),
 .sm_vld(sm1_vld),
 //data debug
-.uart_data(uart_data1),
+.uart_data(),
 //fx bus
 .fx_waddr(fx_waddr),
 .fx_wr(fx_wr),
@@ -961,32 +955,7 @@ chip_top u_chip1_top(
 .rst_n(rst_n)
 );
 
-chip_top u_chip2_top(
-//data path
-.sm1_data(sm1_data),
-.sm2_data(sm2_data),
-.sm3_data(sm3_data),
-.sm4_data(sm4_data),
-.sm5_data(sm5_data),
-.sm6_data(sm6_data),
-.sm7_data(sm7_data),
-.sm8_data(sm8_data),
-.sm_vld(sm1_vld),
-//data debug
-.uart_data(uart_data2),
-//fx bus
-.fx_waddr(fx_waddr),
-.fx_wr(fx_wr),
-.fx_data(fx_data),
-.fx_rd(fx_rd),
-.fx_raddr(fx_raddr),
-.fx_q(chip2_fx_q),
-//clk rst
-.dev_id(6'h05),
-.clk_sys(clk_sys),
-.pluse_us(pluse_us),
-.rst_n(rst_n)
-);
+
 
 //---------- app_top ---------
 wire irq_n;

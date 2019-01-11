@@ -1,16 +1,8 @@
 onerror {resume}
 quietly WaveActivateNextPane {} 0
-add wave -noupdate /tb/syrf1_top/u_chip_top1/u_chip_main/tx_data
-add wave -noupdate /tb/syrf1_top/u_chip_top1/u_chip_main/tx_vld
-add wave -noupdate /tb/syrf1_top/u_chip_top1/u_chip_main/tx_done
-add wave -noupdate /tb/syrf1_top/u_chip_top1/u_chip_main/d1_data
-add wave -noupdate /tb/syrf1_top/u_chip_top1/u_chip_main/d1_vld
-add wave -noupdate /tb/syrf1_top/u_chip_top1/u_chip_main/buf_rdy
-add wave -noupdate /tb/syrf1_top/u_chip_top1/u_chip_main/st_chip
-add wave -noupdate /tb/syrf1_top/u_chip_top1/u_chip_main/cnt_buf
-add wave -noupdate /tb/syrf1_top/u_chip_top1/u_chip_main/cnt_push
-add wave -noupdate /tb/syrf1_top/u_chip_top1/u_chip_main/wrreq
-add wave -noupdate /tb/syrf1_top/u_chip_top1/u_chip_main/rdreq
+add wave -noupdate /tb/syrf1_top/u_chip1_top/sm1_data
+add wave -noupdate /tb/syrf1_top/u_chip1_top/sm2_data
+add wave -noupdate /tb/syrf1_top/u_chip1_top/sm_vld
 TreeUpdate [SetDefaultTree]
 WaveRestoreCursors {{Cursor 1} {10681 ns} 0}
 quietly wave cursor active 1

@@ -12,8 +12,7 @@ sm6_data,
 sm7_data,
 sm8_data,
 sm_vld,
-//data debug
-uart_data,
+
 //fx bus
 fx_waddr,
 fx_wr,
@@ -37,8 +36,6 @@ input [15:0]sm6_data;
 input [15:0]sm7_data;
 input [15:0]sm8_data;
 input				sm_vld;
-//data debug
-output uart_data;
 //fx_bus
 input 				fx_wr;
 input [7:0]		fx_data;
@@ -76,6 +73,7 @@ chip_regs u_chip_regs(
 
 wire [15:0] d1_data;
 wire 				d1_vld;
+wire [6:0]	sel_path;
 wire				buf_rdy;
 chip_path u_chip_path(
 //data path
@@ -91,9 +89,9 @@ chip_path u_chip_path(
 //data output 
 .d1_data(d1_data),
 .d1_vld(d1_vld),
+.sel_path(sel_path),
 .buf_rdy(buf_rdy),
 //cfg
-.cfg_path_sel(cfg_path_sel),
 .cfg_chip_th(cfg_chip_th),
 //clk rst
 .clk_sys(clk_sys),
@@ -118,17 +116,6 @@ chip_main u_chip_main(
 .rst_n(rst_n)
 );
 
-
-phy_utx3 u_uart_chip(
-.uart_tx(uart_data),
-.tx_data(tx_data),		
-.tx_vld(tx_vld),
-.tx_done(tx_done),
-//clk rst
-.clk_sys(clk_sys),
-.pluse_us(pluse_us),
-.rst_n(rst_n)
-);
 
 
 endmodule

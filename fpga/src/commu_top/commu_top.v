@@ -14,6 +14,10 @@ fx_data,
 fx_rd,
 fx_raddr,
 fx_q,
+//pkg data
+pkg_d,
+pkg_vld,
+pkg_done,
 //clk rst
 clk_sys,
 pluse_us,
@@ -29,6 +33,10 @@ output [21:0]	fx_waddr;
 output [21:0]	fx_raddr;
 output 				fx_rd;
 input  [7:0]	fx_q;
+//pkg data
+input [15:0]	pkg_d;
+input					pkg_vld;
+output				pkg_done;
 //clk rst
 input clk_sys;
 input pluse_us;
@@ -51,12 +59,14 @@ phy_urx u_phy_urx(
 );
 
 
-wire [7:0] 	tx_data;
+wire [15:0] tx_data;
 wire				tx_vld;
-phy_utx u_phy_utx(
+wire 				tx_done;
+phy_utx3 u_phy_utx(
 .uart_tx(uart_tx),
 .tx_data(tx_data),
 .tx_vld(tx_vld),
+.tx_done(tx_done),
 //clk rst
 .clk_sys(clk_sys),
 .pluse_us(pluse_us),
@@ -64,7 +74,8 @@ phy_utx u_phy_utx(
 );
 
 `ifdef LOOP_BACK_UART_TEST
-assign tx_data = rx_data;
+assign tx_data[15:8] = 8'h0;
+assign tx_data[7:0] = rx_data;
 assign tx_vld = rx_vld;
 `else
 //--------- fx_bus master --------
@@ -72,8 +83,8 @@ fx_master u_fx_master(
 //phy data
 .rx_data(rx_data),
 .rx_vld(rx_vld),
-.tx_data(tx_data),
-.tx_vld(tx_vld),
+.tx_data(),
+.tx_vld(),		//no path for control read
 //fx bus
 .fx_waddr(fx_waddr),
 .fx_wr(fx_wr),
@@ -85,6 +96,8 @@ fx_master u_fx_master(
 .clk_sys(clk_sys),
 .rst_n(rst_n)
 );
+
+
 `endif
 
 endmodule

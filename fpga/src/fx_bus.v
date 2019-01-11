@@ -42,6 +42,7 @@ ast6_fx_q,
 ast7_fx_q,
 ast8_fx_q,
 chip_fx_q,
+pkg_fx_q,
 //fx bus for uart maseter
 ufx_waddr,
 ufx_wr,
@@ -92,6 +93,7 @@ input  [7:0] ast6_fx_q;
 input  [7:0] ast7_fx_q;
 input  [7:0] ast8_fx_q;
 input  [7:0] chip_fx_q;
+input  [7:0] pkg_fx_q;
 //fx bus for uart maseter
 input 				ufx_wr;
 input [7:0]		ufx_data;
@@ -119,7 +121,7 @@ assign fx_rd = ufx_rd;
 //-------- from salve to master --------
 wire  [7:0]	ufx_q;
 assign ufx_q = 	con_fx_q | app_fx_q | 
-								chip_fx_q | 1'b0 |
+								chip_fx_q | pkg_fx_q |
 								ad1_fx_q | ad2_fx_q | ad3_fx_q | ad4_fx_q|
 								ad5_fx_q | ad6_fx_q | ad7_fx_q | ad8_fx_q|
 								dsp1_fx_q|dsp2_fx_q |dsp3_fx_q |dsp4_fx_q|

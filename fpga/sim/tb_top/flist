@@ -24,8 +24,9 @@ tb.v
 ../../src/commu_top/commu_top.v
 ../../src/commu_top/fx_master.v
 ../../src/commu_top/phy_urx.v
-../../src/commu_top/phy_utx.v
+//../../src/commu_top/phy_utx.v
 ../../src/commu_top/urx_filter.v
+../../src/commu_top/phy_utx3.v
 ../../src/control_top/control_top.v
 ../../src/control_top/cfg_reg.v
 ../../src/ad_top/ad_top.v
@@ -54,7 +55,8 @@ tb.v
 ../../src/chip_top/chip_regs.v
 ../../src/chip_top/chip_path.v
 ../../src/chip_top/chip_main.v
-../../src/chip_top/phy_utx3.v
+../../src/pkg_top/pkg_top.v
+../../src/pkg_top/pkg_regs.v
 
 ../../ip/fifo/fifo16x4096.v
 ../../ip/fifo/scfifo.v

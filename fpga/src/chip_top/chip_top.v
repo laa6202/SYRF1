@@ -12,7 +12,11 @@ sm6_data,
 sm7_data,
 sm8_data,
 sm_vld,
-
+//chip path
+chip_d,
+chip_vld,
+chip_sel,
+chip_rdy,
 //fx bus
 fx_waddr,
 fx_wr,
@@ -36,6 +40,11 @@ input [15:0]sm6_data;
 input [15:0]sm7_data;
 input [15:0]sm8_data;
 input				sm_vld;
+//chip path
+output [15:0]	chip_d;
+output				chip_vld;
+output [6:0]	chip_sel;
+input					chip_rdy;
 //fx_bus
 input 				fx_wr;
 input [7:0]		fx_data;
@@ -110,12 +119,21 @@ chip_main u_chip_main(
 //data in
 .d1_data(d1_data),
 .d1_vld(d1_vld),
-.buf_rdy(buf_rdy),
+.buf_rdy(),
 //clk rst
 .clk_sys(clk_sys),
 .rst_n(rst_n)
 );
 
 
+//-------- chip path -------
+//chip path
+wire [15:0]	chip_d;
+wire 				chip_vld;
+wire [6:0]	chip_sel;
+assign chip_d = d1_data;
+assign chip_vld = d1_vld;
+assign chip_sel = sel_path;
+assign buf_rdy = chip_rdy;
 
 endmodule

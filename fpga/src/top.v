@@ -114,6 +114,7 @@ wire 				fx_rd;
 wire  [7:0]	con_fx_q;
 wire  [7:0] app_fx_q;
 wire  [7:0] chip_fx_q;
+wire  [7:0] pkg_fx_q;
 wire  [7:0]	ad1_fx_q;
 wire  [7:0]	ad2_fx_q;
 wire  [7:0]	ad3_fx_q;
@@ -163,6 +164,7 @@ fx_bus u_fx_bus(
 .con_fx_q(con_fx_q),
 .app_fx_q(app_fx_q),
 .chip_fx_q(chip_fx_q),
+.pkg_fx_q(pkg_fx_q),
 .ad1_fx_q(ad1_fx_q),
 .ad2_fx_q(ad2_fx_q),
 .ad3_fx_q(ad3_fx_q),
@@ -932,7 +934,11 @@ ast_top ast8_top(
 .rst_n(rst_n)
 );
 
-
+//chip path
+wire [15:0]	chip_d;
+wire 				chip_vld;
+wire [6:0]	chip_sel;
+wire 				chip_rdy;
 chip_top u_chip_top(
 //data path
 .sm1_data(sm1_data),
@@ -944,7 +950,11 @@ chip_top u_chip_top(
 .sm7_data(sm7_data),
 .sm8_data(sm8_data),
 .sm_vld(sm1_vld),
-
+//chip path
+.chip_d(chip_d),
+.chip_vld(chip_vld),
+.chip_sel(chip_sel),
+.chip_rdy(chip_rdy),
 //fx bus
 .fx_waddr(fx_waddr),
 .fx_wr(fx_wr),
@@ -995,6 +1005,33 @@ app_top u_app_top(
 .clk_sys(clk_sys),
 .rst_n(rst_n)
 );
+
+
+//-------- pkg_top --------
+pkg_top u_pkg_top(
+//pkg data
+.pkg_d(pkg_d),
+.pkg_vld(pkg_vld),
+.pkg_done(pkg_done),
+//chip path
+.chip_d(chip_d),
+.chip_vld(chip_vld),
+.chip_sel(chip_sel),
+.chip_rdy(chip_rdy),
+//fx bus
+.fx_waddr(fx_waddr),
+.fx_wr(fx_wr),
+.fx_data(fx_data),
+.fx_rd(fx_rd),
+.fx_raddr(fx_raddr),
+.fx_q(pkg_fx_q),
+//clk rst
+.dev_id(6'h05),
+.clk_sys(clk_sys),
+.pluse_us(pluse_us),
+.rst_n(rst_n)
+);
+
 
 //-------- irq and led ----
 assign led[0] = irq_n;

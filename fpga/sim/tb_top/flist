@@ -57,6 +57,10 @@ tb.v
 ../../src/chip_top/chip_main.v
 ../../src/pkg_top/pkg_top.v
 ../../src/pkg_top/pkg_regs.v
+../../src/pkg_top/pkg_main.v
+../../src/pkg_top/pchip_buf.v
+../../src/pkg_top/pchip_push.v
+../../src/pkg_top/pchip_main.v
 
 ../../ip/fifo/fifo16x4096.v
 ../../ip/fifo/scfifo.v

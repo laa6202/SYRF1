@@ -18,6 +18,7 @@ d1_data,
 d1_vld,
 sel_path,
 buf_rdy,
+cfg_len,
 //cfg
 cfg_chip_th,
 //clk rst
@@ -39,6 +40,7 @@ output [15:0]	d1_data;
 output				d1_vld;
 output [6:0]	sel_path;
 input					buf_rdy;
+input  [19:0] cfg_len;
 //cfg
 input [15:0]	cfg_chip_th;
 //clk rst
@@ -46,11 +48,7 @@ input clk_sys;
 input rst_n;
 //--------------------------------------
 //--------------------------------------
-`ifdef SIM
-wire [19:0] cfg_len = 20'd10;
-`else
-wire [19:0] cfg_len = `LEN_CHIP;
-`endif
+
 
 wire [15:0]	d0_data;
 wire d0_vld;
@@ -73,7 +71,8 @@ always @ (posedge clk_sys or negedge rst_n)	begin
 	else if((cnt_th != 20'h0) & d0_vld & buf_rdy)
 		cnt_th <= cnt_th - 20'h1;
 	else if((d0_data >= cfg_chip_th ) & d0_vld & buf_rdy)
-		cnt_th <= cfg_len - 20'h1;
+		//cnt_th <= cfg_len - 20'h1;
+		cnt_th <= cfg_len;
 	else ;
 end
 assign lock_path = (cnt_th != 20'h0) ? 1'b1 : 1'b0;

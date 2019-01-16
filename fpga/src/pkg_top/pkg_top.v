@@ -10,6 +10,7 @@ chip_d,
 chip_vld,
 chip_sel,
 chip_rdy,
+chip_len,
 //fx bus
 fx_waddr,
 fx_wr,
@@ -32,6 +33,7 @@ input [15:0]chip_d;
 input				chip_vld;
 input [6:0]	chip_sel;
 output			chip_rdy;
+input [19:0]chip_len;
 //fx_bus
 input 				fx_wr;
 input [7:0]		fx_data;
@@ -47,7 +49,7 @@ input rst_n;
 //-----------------------------------
 //-----------------------------------
 
-
+//--------- regs ---------
 pkg_regs u_pkg_regs(
 //fx bus
 .fx_waddr(fx_waddr),
@@ -63,7 +65,44 @@ pkg_regs u_pkg_regs(
 );
 
 
-wire chip_rdy = 1'b1;
+//----------- pchip_buf ----------
+wire pcbuf_full;
+wire pcbuf_empty;
+wire pcbuf_rdreq;
+wire [15:0]	pcbuf_q;
+pchip_buf u_pchip_buf(
+//chip path
+.chip_d(chip_d),
+.chip_vld(chip_vld),
+.chip_sel(chip_sel),
+.chip_rdy(chip_rdy),
+.chip_len(chip_len),
+//buf status
+.pcbuf_full(pcbuf_full),
+.pcbuf_empty(pcbuf_empty),
+.pcbuf_rdreq(pcbuf_rdreq),
+.pcbuf_q(pcbuf_q),
+//clk rst
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+
+
+wire [15:0] pchip_d;
+wire pchip_vld;
+wire pchip_done;
+pchip_push u_pchip_push(
+//pkg data
+.pchip_d(pchip_d),
+.pchip_vld(pchip_vld),
+.pchip_done(pchip_done),
+//pcbuf port
+.pcbuf_rdreq(pcbuf_rdreq),
+.pcbuf_q(pcbuf_q),
+//clk rst
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
 
 endmodule
 

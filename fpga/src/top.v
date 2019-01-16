@@ -939,6 +939,7 @@ wire [15:0]	chip_d;
 wire 				chip_vld;
 wire [6:0]	chip_sel;
 wire 				chip_rdy;
+wire [19:0]	chip_len;
 chip_top u_chip_top(
 //data path
 .sm1_data(sm1_data),
@@ -955,6 +956,7 @@ chip_top u_chip_top(
 .chip_vld(chip_vld),
 .chip_sel(chip_sel),
 .chip_rdy(chip_rdy),
+.chip_len(chip_len),
 //fx bus
 .fx_waddr(fx_waddr),
 .fx_wr(fx_wr),
@@ -1018,6 +1020,7 @@ pkg_top u_pkg_top(
 .chip_vld(chip_vld),
 .chip_sel(chip_sel),
 .chip_rdy(chip_rdy),
+.chip_len(chip_len),
 //fx bus
 .fx_waddr(fx_waddr),
 .fx_wr(fx_wr),

@@ -45,7 +45,8 @@ C:\Tools\modeltech64_10.2c\win64\vlog.exe -reportprogress 300 -f flist
 -- Skipping module pkg_top
 -- Skipping module pkg_regs
 -- Skipping module pkg_main
--- Compiling module pchip_buf
+-- Skipping module pkg_mux
+-- Skipping module pchip_buf
 -- Skipping module pchip_push
 -- Skipping module pchip_main
 -- Skipping module fifo16x4096
@@ -54,5 +55,3 @@ C:\Tools\modeltech64_10.2c\win64\vlog.exe -reportprogress 300 -f flist
 
 Top level modules:
 	tb
-	pkg_main
-	pchip_main

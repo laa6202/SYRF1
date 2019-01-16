@@ -58,6 +58,7 @@ tb.v
 ../../src/pkg_top/pkg_top.v
 ../../src/pkg_top/pkg_regs.v
 ../../src/pkg_top/pkg_main.v
+../../src/pkg_top/pkg_mux.v
 ../../src/pkg_top/pchip_buf.v
 ../../src/pkg_top/pchip_push.v
 ../../src/pkg_top/pchip_main.v

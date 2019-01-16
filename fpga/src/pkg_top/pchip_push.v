@@ -10,6 +10,7 @@ pchip_d,
 pchip_vld,
 pchip_done,
 //pcbuf port
+chip_sel,
 pcbuf_rdreq,
 pcbuf_q,
 //clk rst
@@ -25,6 +26,7 @@ output [15:0]	pchip_d;
 output				pchip_vld;
 input					pchip_done;
 //pcbuf port
+input [6:0]		chip_sel;
 output 				pcbuf_rdreq;
 input [15:0]	pcbuf_q;
 //clk rst
@@ -83,13 +85,27 @@ always @(posedge clk_sys or negedge rst_n)	begin
 	else ;
 end
 assign finish_push = (cnt_push == chip_len[11:0]) ? 1'b1 : 1'b0;
-
+reg [15:0] pkg_index;
+always @ (posedge clk_sys or negedge rst_n)	begin
+	if(~rst_n)
+		pkg_index <= 16'h0;
+	else if(st_pchip_push == S_DONE)
+		pkg_index <= pkg_index + 16'h1;
+	else ;
+end
 
 //-------- push head ----------
+wire now_h1 = (st_pchip_push == S_FH1) | (st_pchip_push == S_WH1);
+wire now_h2 = (st_pchip_push == S_FH2) | (st_pchip_push == S_WH2);
+wire now_h3 = (st_pchip_push == S_FH3) | (st_pchip_push == S_WH3);
 wire [15:0]	pchead_d;
 wire 				pchead_vld;
-assign pchead_d = 16'h0;
-assign pchead_vld = 1'b0;
+assign pchead_d = now_h1 ? 16'h5331 : 
+									now_h2 ? {9'h0,chip_sel} :
+									now_h3 ? pkg_index : 16'h0;
+assign pchead_vld = (st_pchip_push == S_FH1) | 
+										(st_pchip_push == S_FH2) | 
+										(st_pchip_push == S_FH3);
 
 
 //--------- push data ----------

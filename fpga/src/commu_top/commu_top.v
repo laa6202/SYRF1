@@ -72,6 +72,10 @@ phy_utx3 u_phy_utx(
 .pluse_us(pluse_us),
 .rst_n(rst_n)
 );
+assign tx_data = pkg_d;
+assign tx_vld  = pkg_vld;
+wire 	 pkg_done = tx_done;
+
 
 `ifdef LOOP_BACK_UART_TEST
 assign tx_data[15:8] = 8'h0;

@@ -145,14 +145,37 @@ pchip_push u_pchip_push(
 //pkg data
 .pchip_d(pchip_d),
 .pchip_vld(pchip_vld),
-.pchip_done(1'b1),
+.pchip_done(pchip_done),
 //pcbuf port
+.chip_sel(chip_sel),
 .pcbuf_rdreq(pcbuf_rdreq),
 .pcbuf_q(pcbuf_q),
 //clk rst
 .clk_sys(clk_sys),
 .rst_n(rst_n)
 );
+
+
+
+//-------- pkg_mux ----------
+pkg_mux u_pkg_mux(
+//pkg data
+.pkg_d(pkg_d),
+.pkg_vld(pkg_vld),
+.pkg_done(pkg_done),
+//pchip data
+.pchip_d(pchip_d),
+.pchip_vld(pchip_vld),
+.pchip_done(pchip_done),
+//papp data
+.papp_d(16'h0),
+.papp_vld(1'b0),
+.papp_done(),
+//clk rst
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+
 
 endmodule
 

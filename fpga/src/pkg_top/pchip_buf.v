@@ -51,11 +51,24 @@ fifo16x4096 u_fifo16x4096 (
 
 //assign rdreq = 1'b0;
 assign rdreq = pcbuf_rdreq;
-wire [15:0] pchip_q = q;
+wire [15:0] pcbuf_q = q;
 
-wire chip_rdy = (usedw < chip_len[11:0]) ? 1'b1 : 1'b0;
+//--------- chip_rdy ----------
+//wire chip_rdy = (usedw < chip_len[11:0]) ? 1'b1 : 1'b0;
+reg chip_rdy;
+always @ (posedge clk_sys or negedge rst_n)	begin
+	if(~rst_n)
+		chip_rdy <= 1'b1;
+	else if(empty)
+		chip_rdy <= 1'b1;
+	else if(usedw >= chip_len[11:0])
+		chip_rdy <= 1'b0;
+	else ;
+end
 
-wire pchip_full = (usedw >= chip_len[11:0]) ? 1'b1 : 1'b0;
-wire pchip_empty = empty;
+
+//--------- buf status ----------
+wire pcbuf_full = (usedw >= chip_len[11:0]) ? 1'b1 : 1'b0;
+wire pcbuf_empty = empty;
 
 endmodule

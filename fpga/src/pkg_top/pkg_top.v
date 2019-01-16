@@ -65,9 +65,55 @@ pkg_regs u_pkg_regs(
 );
 
 
-//----------- pchip_buf ----------
+//----------- pkg_main -----------
+//control signal
+wire fire_pchip;
+wire done_pchip;
+wire fire_papp;
+wire done_papp;
+//buf satus
 wire pcbuf_full;
 wire pcbuf_empty;
+wire pabuf_full;
+wire pabuf_empty;
+pkg_main u_pkg_main(
+//control
+.fire_pchip(fire_pchip),
+.done_pchip(done_pchip),
+.fire_papp(fire_papp),
+.done_papp(done_papp),
+//buf satus
+.pcbuf_full(pcbuf_full),
+.pcbuf_empty(pcbuf_empty),
+.pabuf_full(pabuf_full),
+.pabuf_empty(pabuf_empty),
+//clk rst
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+//no logic
+assign done_papp = 1'b1;
+assign pabuf_full = 1'b0;
+assign pabuf_empty = 1'b1;
+
+
+//----------- pchip path----------
+wire fire_pcpush;
+wire done_pcpush;
+pchip_main u_pchip_main(
+//control in
+.fire_pchip(fire_pchip),
+.done_pchip(done_pchip),
+//control out
+.fire_pcpush(fire_pcpush),
+.done_pcpush(done_pcpush),
+//clk rst
+.clk_sys(clk_sys),
+.rst_n(rst_n)
+);
+
+
+
 wire pcbuf_rdreq;
 wire [15:0]	pcbuf_q;
 pchip_buf u_pchip_buf(
@@ -92,10 +138,14 @@ wire [15:0] pchip_d;
 wire pchip_vld;
 wire pchip_done;
 pchip_push u_pchip_push(
+//control 
+.fire_pcpush(fire_pcpush),
+.done_pcpush(done_pcpush),
+.chip_len(chip_len),
 //pkg data
 .pchip_d(pchip_d),
 .pchip_vld(pchip_vld),
-.pchip_done(pchip_done),
+.pchip_done(1'b1),
 //pcbuf port
 .pcbuf_rdreq(pcbuf_rdreq),
 .pcbuf_q(pcbuf_q),

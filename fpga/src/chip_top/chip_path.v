@@ -1,6 +1,6 @@
 //chip_path.v
 
-`define LEN_CHIP 20'd4000
+
 
 module chip_path(
 //data path

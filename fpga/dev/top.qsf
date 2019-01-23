@@ -108,8 +108,15 @@ set_global_assignment -name ENABLE_CONFIGURATION_PINS OFF
 set_global_assignment -name ENABLE_BOOT_SEL_PIN OFF
 set_global_assignment -name STRATIXV_CONFIGURATION_SCHEME "PASSIVE SERIAL"
 set_global_assignment -name RESERVE_DCLK_AFTER_CONFIGURATION "USE AS REGULAR IO"
-set_global_assignment -name VERILOG_FILE ../src/chip_top/phy_utx3.v
-set_global_assignment -name VERILOG_FILE ../src/chip_top/phy_utx2.v
+set_location_assignment PIN_G18 -to uart_tx
+set_global_assignment -name VERILOG_FILE ../src/commu_top/phy_utx3.v
+set_global_assignment -name VERILOG_FILE ../src/pkg_top/pkg_top.v
+set_global_assignment -name VERILOG_FILE ../src/pkg_top/pkg_regs.v
+set_global_assignment -name VERILOG_FILE ../src/pkg_top/pkg_mux.v
+set_global_assignment -name VERILOG_FILE ../src/pkg_top/pkg_main.v
+set_global_assignment -name VERILOG_FILE ../src/pkg_top/pchip_push.v
+set_global_assignment -name VERILOG_FILE ../src/pkg_top/pchip_main.v
+set_global_assignment -name VERILOG_FILE ../src/pkg_top/pchip_buf.v
 set_global_assignment -name VERILOG_FILE ../src/chip_top/chip_top.v
 set_global_assignment -name VERILOG_FILE ../src/chip_top/chip_regs.v
 set_global_assignment -name VERILOG_FILE ../src/chip_top/chip_path.v
@@ -152,6 +159,5 @@ set_global_assignment -name SIGNALTAP_FILE stp1.stp
 set_global_assignment -name QIP_FILE ../ip/fifo/fifo8x8192.qip
 set_global_assignment -name QIP_FILE ../ip/ram/ram8x8192.qip
 set_global_assignment -name QIP_FILE ../ip/fifo/fifo16x4096.qip
-set_location_assignment PIN_G18 -to uart_tx
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp

@@ -1,5 +1,5 @@
 //chip_top.v
-
+`define LEN_CHIP 20'd4000
 
 module chip_top(
 //data path
@@ -61,12 +61,15 @@ input pluse_us;
 input rst_n;
 //--------------------------------------
 //--------------------------------------
+
 `ifdef SIM
 wire [19:0] cfg_len = 20'd10;
 `else
 wire [19:0] cfg_len = `LEN_CHIP;
 `endif
+
 wire [19:0] chip_len = cfg_len;
+
 
 wire [7:0] cfg_path_sel;
 wire [15:0] cfg_chip_th;
@@ -107,7 +110,7 @@ chip_path u_chip_path(
 .d1_vld(d1_vld),
 .sel_path(sel_path),
 .buf_rdy(buf_rdy),
-.cfg_len(cfg_len),
+.cfg_len(chip_len),
 //cfg
 .cfg_chip_th(cfg_chip_th),
 //clk rst
